@@ -1,0 +1,67 @@
+{
+  "erd_id": "32_2.png",
+  "entities": [
+    {
+      "name": "Video Game",
+      "kind": "weak_entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "Platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+    },
+    {
+      "name": "Region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Developer",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video Game", "cardinality": "0M"},
+        {"name": "Developer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Platform",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video Game", "cardinality": "0M"},
+        {"name": "Platform", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Developed By",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Developer", "cardinality": "11"},
+        {"name": "Platform", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Game Sales",
+      "kind": "relationship",
+      "attributes": ["Sales"],
+      "involved_entities": [
+        {"name": "Video Game", "cardinality": "0M"},
+        {"name": "Region", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

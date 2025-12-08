@@ -1,0 +1,195 @@
+{
+  "erd_id": "133_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "PK_NOT_DEFINED",
+        "target_type": "entity",
+        "target_name": "Recall"
+      },
+      {
+        "code": "PK_NOT_DEFINED",
+        "target_type": "entity",
+        "target_name": "Rent Installments"
+      },
+      {
+        "code": "PK_NOT_DEFINED",
+        "target_type": "entity",
+        "target_name": "Trip"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Build",
+      "kind": "entity",
+      "primary_keys": ["make", "model", "year"],
+      "attributes": []
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["current mileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Owner Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age", "starting mileage"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "Renting Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age", "starting date", "ending date"]
+    },
+    {
+      "name": "Rent Installments",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "amount"]
+    },
+    {
+      "name": "Trip",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date-time", "number of stars"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "drives1",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Owner Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "drives2",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Renting Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "0M"
+        }
+      ]
+    },
+
+    {
+      "name": "for",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Build",
+          "cardinality": "11"
+        },
+        {
+          "name": "Recall",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Build",
+          "cardinality": "11"
+        },
+        {
+          "name": "Car",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Owner Driver",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "payment",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Renting Driver",
+          "cardinality": "11"
+        },
+        {
+          "name": "Rent Installments",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "rents",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Renting Driver",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "takes",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customer",
+          "cardinality": "11"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "0M"
+        }
+      ]
+    }
+  ]
+}

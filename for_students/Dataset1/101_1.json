@@ -1,0 +1,130 @@
+{
+  "erd_id": "101_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_number, state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customerID"],
+      "attributes": ["name", "credit_card_number"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN, number"],
+      "attributes": ["current_mileage"]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": ["date-time"],
+      "attributes": ["description", "stars"]
+    },
+    {
+      "name": "Monthly Rent",
+      "kind": "weak_entity",
+      "primary_keys": ["Date"],
+      "attributes": ["amount owed"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "Make-Model-Year",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": []
+    },
+    {
+      "name": "Trip",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": []
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Rents",
+      "kind": "identifying_relationship",
+      "attributes": ["Start Date", "Ending Date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["Starting Mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Trip", "cardinality": "11"},
+        {"name": "Review", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Takes",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Trip",    "cardinality": "0M"},
+        {"name": "Customer", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Goes on",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Trip",    "cardinality": "0M"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Make-Model-Year",    "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Issue",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Make-Model-Year",    "cardinality": "11"},
+        {"name": "Recall", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Pays",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Monthly Rent",    "cardinality": "1M"},
+        {"name": "Rents", "cardinality": "11"}
+      ]
+    }
+  ]
+}

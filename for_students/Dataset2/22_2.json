@@ -1,0 +1,77 @@
+{
+    "erd_id": "22_2.png", 
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "video_game",
+            "kind": "entity",
+            "primary_keys": ["rank"],
+            "attributes": ["name", "year", "genre"]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+        },
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarter"]
+        },
+        {
+            "name": "games_sales",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["sales"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "publish",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "11"},
+                {"name": "video_game", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "develop",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "11"},
+                {"name": "platform", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Run on",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "0M"},
+                {"name": "platform", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Sell",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "region", "cardinality": "11"},
+                {"name": "video_game", "cardinality": "11"},
+                {"name": "games_sales", "cardinality": "11"}
+            ]
+        }
+    ]
+}

@@ -1,0 +1,122 @@
+{
+    "erd_id": "8_1.png",
+    "comment": {
+        "flags": [
+            { 
+                "code": "WEAK_ENTITY_NO_IDENT_REL", 
+                "target_type": "entity", 
+                "target_name": "Owned Car Driver Trip Review" 
+            },
+            { 
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Rented Car Driver Trip Review"
+            },
+            {
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Monthly Rent Installments" 
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": ["Customer ID"],
+            "attributes": ["Name", "Credit Card Number"]
+        },
+        {
+            "name": "Driver that owns",
+            "kind": "entity",
+            "primary_keys": ["License number", "State"],
+            "attributes": ["Name", "Age"]
+        },
+        {
+            "name": "Driver that rents",
+            "kind": "entity",
+            "primary_keys": ["License number", "State"],
+            "attributes": ["Name", "Age"]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": ["VIN Number"],
+            "attributes": ["Make", "Model", "Year", "Current Mileage"]
+        },
+        {
+            "name": "Owned Car Driver Trip Review",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["Description", "Date", "Number of Stars"]
+        },
+        {
+            "name": "Rented Car Driver Trip Review",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["Description", "Date", "Number of Stars"]
+        },
+        {
+            "name": "Monthly Rent Installments",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["Date", "Amount"]
+        }, 
+        {
+            "name": "Recall",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["Date", "Description"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Goes on Trip With Driver that owns",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Customer", "cardinality": "0M"},
+                {"name": "Driver that owns", "cardinality": "0M"},
+                {"name": "Owned Car Driver Trip Review", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Goes on Trip With Driver that rents",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Customer", "cardinality": "0M"},
+                {"name": "Driver that rents", "cardinality": "0M"},
+                {"name": "Rented Car Driver Trip Review", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Owns",
+            "kind": "relationship",
+            "attributes": ["starting mileage"],
+            "involved_entities": [
+                {"name": "Driver that owns", "cardinality": "01"},
+                {"name": "Car", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Rents",
+            "kind": "relationship",
+            "attributes": ["start date", "End date"],
+            "involved_entities": [
+                {"name": "Driver that rents", "cardinality": "01"},
+                {"name": "Car", "cardinality": "01"},
+                {"name": "Monthly Rent Installments", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Rents",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Car", "cardinality": "11"},
+                {"name": "Recall", "cardinality": "0M"}
+            ]
+        }
+    ]
+}

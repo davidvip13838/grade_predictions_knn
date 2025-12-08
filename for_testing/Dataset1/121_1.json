@@ -1,0 +1,85 @@
+{
+  "erd_id": "121_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Driver (Owner)",
+      "kind": "entity",
+      "primary_keys": ["Licence", "State"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Driver (Renter)",
+      "kind": "entity",
+      "primary_keys": ["Licence", "State"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["ID"],
+      "attributes": ["Name", "CC Number"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["Make", "Model", "Year", "Current Milage"]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Description", "Date/Time", "Number of Stars"]
+    },
+    {
+      "name": "Recalls",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Make", "Model", "Year", "Description", "Date"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": ["Starting Milage"],
+      "involved_entities": [
+        {"name": "Driver (Owner)", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": ["Start Date", "End Date", "Rent Date of Installment", "Amount of Installment"],
+      "involved_entities": [
+        {"name": "Driver (Renter)", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "01"},
+        {"name": "Driver (Renter)", "cardinality": "11"},
+        {"name": "Driver (Owner)", "cardinality": "11"},
+        {"name": "Review", "cardinality": "UNC"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "UNC"},
+        {"name": "Recalls", "cardinality": "1M"}
+      ]
+    }
+  ]
+}

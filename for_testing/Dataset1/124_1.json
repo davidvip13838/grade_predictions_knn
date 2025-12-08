@@ -1,0 +1,77 @@
+{
+    "erd_id": "124_1.png",
+    "comment": {
+        "flags": []
+    }, 
+    "entities": [
+        {
+            "name": "Driver",
+            "kind": "entity",
+            "primary_keys": ["license number", "state"],
+            "attributes": ["name", "age"]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": ["VIN number"],
+            "attributes": ["make", "model", "year", "current mileage"]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": ["customer id"],
+            "attributes": ["name", "credit card number"]
+        },
+        {
+            "name": "Review",
+            "kind": "entity",
+            "primary_keys": ["Car", "Driver"],
+            "attributes": ["description", "date-time", "stars"]
+        },
+        {
+            "name": "Recall",
+            "kind": "entity",
+            "primary_keys": ["make", "model", "year"],
+            "attributes": ["date", "description"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "has",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Car", "cardinality": "0M"},
+                {"name": "Recall", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "post",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Customer", "cardinality": "11"},
+                {"name": "Review", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Trip",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Driver", "cardinality": "UNC"},
+                {"name": "Car", "cardinality": "UNC"},
+                {"name": "Review", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "Rent or Own",
+            "kind": "relationship",
+            "attributes": ["starting date", "ending date", "starting mileage", "rent or own", "installments made"],
+            "involved_entities": [
+                {"name": "Driver", "cardinality": "11"},
+                {"name": "Car", "cardinality": "11"}
+            ]
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+{
+    "erd_id": "13_2.png",
+    "entities": [
+      {
+        "name": "platform",
+        "kind": "entity",
+        "primary_keys": ["platform_id"],
+        "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+      },
+      {
+        "name": "video_game",
+        "kind": "entity",
+        "primary_keys": ["rank"],
+        "attributes": ["name", "platform_id", "year", "genre", "publisher_id"]
+      },
+      {
+        "name": "developer",
+        "kind": "entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "headquarters"]
+      },
+      {
+        "name": "region",
+        "kind": "entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "population"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Developed by",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "platform",  "cardinality": "0M"},
+          {"name": "developer", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Held on",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "video_game", "cardinality": "0M"},
+          {"name": "platform",   "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Published by",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "video_game", "cardinality": "0M"},
+          {"name": "developer",  "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Headquartered in",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "developer", "cardinality": "0M"},
+          {"name": "region",    "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Sells in",
+        "kind": "relationship",
+        "attributes": ["Sales"],
+        "involved_entities": [
+          {"name": "video_game", "cardinality": "0M"},
+          {"name": "region",     "cardinality": "0M"}
+        ]
+      }
+    ]
+  }
+  

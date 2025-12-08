@@ -1,0 +1,163 @@
+{
+  "erd_id": "4_1.png",
+  "comment": {
+    "flags": [
+       {
+        "code": "ATTRIBUTE_UNCONNECTED",
+        "target_type": "global",
+        "target_name": "start_date"
+      },
+      {
+        "code": "ATTRIBUTE_UNCONNECTED",
+        "target_type": "global",
+        "target_name": "end_date"
+      },
+      {
+        "code": "ATTRIBUTE_UNCONNECTED",
+        "target_type": "global",
+        "target_name": "installment_date"
+      },
+      {
+        "code": "ATTRIBUTE_UNCONNECTED",
+        "target_type": "global",
+        "target_name": "installment_amount"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": [
+        "license_number",
+        "state"
+      ],
+      "attributes": [
+        "name",
+        "age"
+      ]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": [
+        "cutomer_id"
+      ],
+      "attributes": [
+        "name",
+        "credit_card_number"
+      ]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": [
+        "vin_number"
+      ],
+      "attributes": [
+        "make",
+        "model",
+        "year",
+        "current_mileage"
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": [
+        "number_of_stars",
+        "date_time",
+        "description"
+      ]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": [
+        "date",
+        "description"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": [
+        "starting_mileage"
+      ],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Car",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Car",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Drives",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "11"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "Rides",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customer",
+          "cardinality": "11"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Recall",
+          "cardinality": "0M"
+        }
+      ]
+    }
+  ]
+}

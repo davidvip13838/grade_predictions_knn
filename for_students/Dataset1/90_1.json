@@ -1,0 +1,156 @@
+{
+  "erd_id": "90_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": [
+        "lisence_number"
+      ],
+      "attributes": [
+        "State",
+        "Name",
+        "Age"
+      ]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": [
+        "customer_id"
+      ],
+      "attributes": [
+        "Name",
+        "Credit Card #"
+      ]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": [
+        "VIN"
+      ],
+      "attributes": [
+        "Make",
+        "Model",
+        "Year",
+        "Mileage"
+      ]
+    },
+    {
+      "name": "Recalls",
+      "kind": "entity",
+      "primary_keys": [
+        "Make"
+      ],
+      "attributes": [
+        "Description",
+        "Date",
+        "Model",
+        "Year"
+      ]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": [
+        "Description"
+      ],
+      "attributes": [
+        "# of Stars",
+        "Date and Time"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": [
+        "Start Date",
+        "End Date",
+        "rent and date",
+        "monthly rent"
+      ],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Car",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": [
+        "Starting mileage"
+      ],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Car",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Reviewed",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Review",
+          "cardinality": "1M"
+        }
+      ]
+    },
+    {
+      "name": "Author",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Review",
+          "cardinality": "11"
+        },
+        {
+          "name": "Customer",
+          "cardinality": "1M"
+        }
+      ]
+    },
+    {
+      "name": "has_recall",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Recalls",
+          "cardinality": "0M"
+        }
+      ]
+    }
+  ]
+}

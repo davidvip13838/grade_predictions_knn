@@ -1,0 +1,118 @@
+{
+    "erd_id": "94_1.png", 
+    "comment": {
+        "flags": [
+            {
+                "code":"WEAK_ENTITY_NO_IDENT_REL",
+                "target_type":"entity",
+                "target_name":"Owner"
+            },
+            {
+                "code":"WEAK_ENTITY_NO_IDENT_REL",
+                "target_type":"entity",
+                "target_name":"Renter"
+            },
+            {
+                "code":"WEAK_ENTITY_NO_IDENT_REL",
+                "target_type":"entity",
+                "target_name":"Recall"
+            },
+            {
+                "code":"WEAK_ENTITY_NO_IDENT_REL",
+                "target_type":"entity",
+                "target_name":"Review"
+            },
+            {
+                "code":"CARDINALITY_GLYPH_CONFLICT",
+                "target_type":"relationship",
+                "target_name":"has1"
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "Driver",
+            "kind": "entity",
+            "primary_keys": ["license_num"],
+            "attributes": ["state", "name", "age"]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": ["customer_id"],
+            "attributes": ["name", "credit_card"]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": ["VIN int"],
+            "attributes": ["make String", "model String", "year int", "current_mil int"]
+        },
+        {
+            "name": "Owner",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["starting_mileage"]
+        },
+        {
+            "name": "Renter",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["start_date", "end_date", "installment_amnt", "payment_date"]
+        },
+        {
+            "name": "Review",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["description", "date_time", "number_of_stars"]
+        },
+        {
+            "name": "Recall",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["date", "description"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "trip",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Driver", "cardinality": "11"},
+                {"name": "Customer", "cardinality": "11"},
+                {"name": "Review", "cardinality": "0M"},
+                {"name": "Car", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "is",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Driver", "cardinality": "01"},
+                {"name": "Renter", "cardinality": "01"},
+                {"name": "Owner", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "has1",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Car", "cardinality": "UNC"},
+                {"name": "Renter", "cardinality": "01"},
+                {"name": "Owner", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "has2",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Car", "cardinality": "01"},
+                {"name": "Recall", "cardinality": "01"}
+            ]
+        }
+    ]
+}

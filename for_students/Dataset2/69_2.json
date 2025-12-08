@@ -1,0 +1,85 @@
+{
+  "erd_id": "69_2.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Video_Game",
+      "kind": "entity",
+      "primary_keys": ["Rank"],
+      "attributes": ["Name", "Year", "Genre"]
+    },
+    {
+      "name": "Games_sales",
+      "kind": "weak_entity",
+      "primary_keys": ["rank", "region_id"],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["Developer_ID"],
+      "attributes": ["Name", "Headquarters"]
+    },
+    {
+      "name": "Region",
+      "kind": "entity",
+      "primary_keys": ["Region_ID"],
+      "attributes": ["Name", "Population"]
+    },
+    {
+      "name": "Platform",
+      "kind": "entity",
+      "primary_keys": ["Platform_id"],
+      "attributes": ["platform_name", "Introductory Price", "Units_Sold"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Sales",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video_Game", "cardinality": "11"},
+        {"name": "Games-sales", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Published By",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video_Game", "cardinality": "0M"},
+        {"name": "Developer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Published On",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video_Game", "cardinality": "0M"},
+        {"name": "Platform", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Developed By",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Developer", "cardinality": "11"},
+        {"name": "Platform", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Grouped By",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Games_sales", "cardinality": "0M"},
+        {"name": "Region", "cardinality": "11"}
+      ]
+    }
+  ]
+}

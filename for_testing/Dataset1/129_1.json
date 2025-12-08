@@ -1,0 +1,119 @@
+{
+  "erd_id": "129_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Installment",
+      "kind": "entity",
+      "primary_keys": ["driver"],
+      "attributes": ["date", "monthly rent amount"]
+    },
+    {
+      "name": "Trip",
+      "kind": "entity",
+      "primary_keys": ["trip_number"],
+      "attributes": ["date-time"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    }
+
+
+  ],
+  "relationships": [
+    {
+      "name": "Make",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Intallment", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "take",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Trip", "cardinality": "0M"},
+        {"name": "Customer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Review",
+      "kind": "relationship",
+      "attributes": ["description", "date-time", "number of stars"],
+      "involved_entities": [
+        {"name": "Trip", "cardinality": "0M"},
+        {"name": "Customer", "cardinality": "11"}
+
+      ]
+    },
+    {
+      "name": "provide",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"}, 
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Trip", "cardinality": "0M"}
+
+      ]
+    },
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": ["starting mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"}, 
+        {"name": "Car", "cardinality": "01"}
+
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": ["starting date", "ending date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"}, 
+        {"name": "Car", "cardinality": "01"}
+
+      ]
+    },
+
+
+    {
+      "name": "have",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Recall", "cardinality": "0M"}
+
+      ]
+    }
+  ]
+}

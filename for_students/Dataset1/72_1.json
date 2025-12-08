@@ -1,0 +1,88 @@
+{
+  "erd_id": "72_1.png",
+  "comment": {
+    "flags": [ 
+      {"code": "WEAK_ENTITY_NO_IDENT_REL", "target_type": "entity", "target_name": "Recall"},
+      {"code":"CARDINALITY_GLYPH_CONFLICT","target_type":"relationship","target_name":"Trip"},
+      {"code":"CARDINALITY_GLYPH_CONFLICT","target_type":"relationship","target_name":"associated with"},
+      {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"Driver"},
+      {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"Car"},
+      {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"Customer"}
+      ]
+  },
+  
+   "entities": [
+     {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["License number", "state","Name", "Age"]
+    },
+    { 
+      "name" : "Car",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["Vin number", "make", "model", "year", "current mileage"]
+    },
+    {
+      "name" : "Recall" ,
+      "kind": "weak_entity",
+      "primary_keys" : [] ,
+      "attributes" : ["make-model-year" , "date" ,"description"]
+    },
+    {
+      "name" : "Review" , 
+      "kind" : "weak_entity",
+      "primary_keys" : [] ,
+      "attributes" : ["Description", "Date" , "Number of stars"]
+      
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["Customer id", "Name", "Credit card number"]
+    }
+    ],
+    
+    "relationships": [
+     {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": ["start mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "rental contract",
+      "kind": "relationship",
+      "attributes": ["start date", "end date", "amounts of monthly transactions", "dates of transactions"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "associated with",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "UNC"},
+        {"name": "Recall", "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "UNC"},
+        {"name": "Review", "cardinality": "1M"},
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    }
+  ]
+}

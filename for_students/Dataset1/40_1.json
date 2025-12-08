@@ -1,0 +1,105 @@
+{
+  "erd_id": "40_1.png",
+  "comment": {
+    "flags": [
+      {"code":"CARDINALITY_GLYPH_CONFLICT","target_type":"relationship","target_name":"RentalReview"},
+      {"code":"CARDINALITY_GLYPH_CONFLICT","target_type":"relationship","target_name":"OwnedReview"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "RentalDriver",
+      "kind": "entity",
+      "primary_keys": ["license no", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "OwnedDriver",
+      "kind": "entity",
+      "primary_keys": ["license no", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit_card_no"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN_no"],
+      "attributes": ["make", "model", "year", "current_mileage"]
+    },
+    {
+      "name": "RentalInstallments",
+      "kind": "weak_entity",
+      "primary_keys": ["date"],
+      "attributes": ["installment amount", "start date", "end date"]
+    },
+    {
+      "name": "RecallOrder",
+      "kind": "weak_entity",
+      "primary_keys": ["make", "model", "year"],
+      "attributes": ["date", "description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "RentalReview",
+      "kind": "relationship",
+      "attributes": ["number of starts", "datetime", "description"],
+      "involved_entities": [
+        {"name": "RentalDriver", "cardinality": "UNC"},
+        {"name": "Customer",    "cardinality": "UNC"},
+        {"name": "Car",    "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "OwnedReview",
+      "kind": "relationship",
+      "attributes": ["number of starts", "datetime", "description"],
+      "involved_entities": [
+        {"name": "OwnedDriver", "cardinality": "UNC"},
+        {"name": "Car", "cardinality": "UNC"},
+        {"name": "Customer", "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": ["starting mileage"],
+      "involved_entities": [
+        {"name": "OwnedDriver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "O1"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "RentalInstallments",   "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Pays",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "RentalDriver", "cardinality": "11"},
+        {"name": "RentalInstallments",   "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Recall",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "RecallOrder", "cardinality": "1M"},
+        {"name": "Car",   "cardinality": "1M"}
+      ]
+    }
+  ]
+}

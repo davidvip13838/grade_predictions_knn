@@ -1,0 +1,69 @@
+{
+  "erd_id": "86_2.png",
+  "entities": [
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "Platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+    },
+    {
+      "name": "Video_Game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "Region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Game Sales",
+      "kind": "relationship",
+      "attributes": ["sales"],
+      "involved_entities": [
+	{"name": "Video_Game", "cardinality": "1M"},
+	{"name": "Region", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Publish",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+	{"name": "Developer", "cardinality": "11"},
+	{"name": "Video_Game", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Develop On",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+	{"name": "Developer", "cardinality": "11"},
+	{"name": "Platform", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Hosts",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+	{"name": "Platform", "cardinality": "11"},
+	{"name": "Video_Game", "cardinality": "1M"}
+      ]
+    }
+  ]
+}
+      
+	

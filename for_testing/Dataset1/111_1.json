@@ -1,0 +1,85 @@
+{
+    "erd_id": "111_1.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Owner Driver",
+            "kind": "entity",
+            "primary_keys": ["License Number", "State"],
+            "attributes": ["Name", "Age"]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": ["Customer ID"],
+            "attributes": ["Name", "Credit Card Number"]
+        },
+        {
+            "name": "Rental Driver",
+            "kind": "entity",
+            "primary_keys": ["License Number", "State"],
+            "attributes": ["Name", "Age"]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": ["VIN"],
+            "attributes": ["Make", "Model", "Year", "Current Mileage"]
+        },
+        {
+            "name": "Review",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["Date-time", "Description", "Number of Stars"]
+        },
+        {
+            "name": "Recall",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["Date", "Description"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Rents",
+            "kind": "relationship",
+            "attributes": ["Current Date", "Start Date", "End Date", "Monthly Rent Installments Made"],
+            "involved_entities": [
+                {"name": "Car",           "cardinality": "11"},
+                {"name": "Owner Driver", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Owns",
+            "kind": "relationship",
+            "attributes": ["Starting Mileage"],
+            "involved_entities": [
+                {"name": "Rental Driver", "cardinality": "11"},
+                {"name": "Car",           "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Trip",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Rental Driver", "cardinality": "11"},
+                {"name": "Car",           "cardinality": "11"},
+                {"name": "Owner Driver", "cardinality": "11"},
+                {"name": "Customer", "cardinality": "11"},
+                {"name": "Review",        "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Has",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Car",    "cardinality": "11"},
+                {"name": "Recall", "cardinality": "0M"}
+            ]
+        }
+    ]
+}

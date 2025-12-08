@@ -1,0 +1,70 @@
+{
+    "erd_id": "49_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+        },
+        {
+            "name": "region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "video_game",
+            "kind": "weak_entity",
+            "primary_keys": ["rank"],
+            "attributes": ["name", "year", "genre"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Developed1",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "11"},
+                {"name": "platform", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Developed2",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "11"},
+                {"name": "video_game", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Runs",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "platform", "cardinality": "1M"},
+                {"name": "video_game", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Sells",
+            "kind": "identifying_relationship",
+            "attributes": ["sales"],
+            "involved_entities": [
+                {"name": "region", "cardinality": "1M"},
+                {"name": "video_game", "cardinality": "0M"}
+            ]
+        }
+    ]
+}

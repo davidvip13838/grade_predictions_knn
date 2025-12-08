@@ -1,0 +1,85 @@
+{
+  "erd_id": "36_2.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "games_sales",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "sold in",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "region", "cardinality": "11"},
+        {"name": "games_sales",    "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Amount sold",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "games_sales", "cardinality": "01"},
+        {"name": "video_game",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "developed by1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "0M"},
+        {"name": "developer",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "runs with",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "0M"},
+        {"name": "platform",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "developed by2",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"},
+        {"name": "platform",    "cardinality": "0M"}
+      ]
+    }
+  ]
+}

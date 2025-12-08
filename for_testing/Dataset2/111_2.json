@@ -1,0 +1,77 @@
+{
+    "erd_id": "111_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Developer",
+            "kind": "entity",
+            "primary_keys": ["ID"],
+            "attributes": ["Name", "Headquarters"]
+        },
+        {
+            "name": "Video Game",
+            "kind": "entity",
+            "primary_keys": ["Rank"],
+            "attributes": ["Name", "Genre", "Year"]
+        },
+        {
+            "name": "Platform",
+            "kind": "entity",
+            "primary_keys": ["Platform Id"],
+            "attributes": ["Platform_name", "Introductory Price", "Units Sold"]
+        },
+        {
+            "name": "Region",
+            "kind": "entity",
+            "primary_keys": ["ID"],
+            "attributes": ["Name", "Population"]
+        },
+        {
+            "name": "Game Sales",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["Sales"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Has1",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Video Game", "cardinality": "0M"},
+                {"name": "Developer", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Has2",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Platform", "cardinality": "11"},
+                {"name": "Video Game", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Has3",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Developer", "cardinality": "11"},
+                {"name": "Platform", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Has4",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Video Game", "cardinality": "11"},
+                {"name": "Game Sales", "cardinality": "01"},
+                {"name": "Region", "cardinality": "11"}
+            ]
+        }
+    ]
+}

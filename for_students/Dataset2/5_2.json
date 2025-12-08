@@ -1,0 +1,70 @@
+{
+    "erd_id": "5_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "video_game",
+            "kind": "entity",
+            "primary_keys": ["rank"],
+            "attributes": ["name", "year", "genre"]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["platform_name", "introductory_price_US", "units_sold"]
+        },
+        {
+            "name": "region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "region"]
+        },
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarter"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "game_sales",
+            "kind": "relationship",
+            "attributes": ["sales"],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "0M"},
+                {"name": "region", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "has",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "0M"},
+                {"name": "platform", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "on",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "0M"},
+                {"name": "platform", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "publish",
+            "kind": "identifying_relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "0M"},
+                {"name": "developer", "cardinality": "UNC"}
+            ]
+        }
+    ]
+}

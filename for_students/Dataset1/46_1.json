@@ -1,0 +1,92 @@
+{
+    "erd_id": "46_1.png",
+    "comment": {
+      "flags": [
+        {
+          "code": "WEAK_ENTITY_NO_IDENT_REL",
+          "target_type": "entity",
+          "target_name": "Recall"
+        }
+      ]
+    },
+    "entities": [
+      {
+        "name": "Driver",
+        "kind": "entity",
+        "primary_keys": ["license number", "state"],
+        "attributes": ["name", "age"]
+      },
+      {
+        "name": "Car",
+        "kind": "entity",
+        "primary_keys": ["VIN number"],
+        "attributes": ["current mileage"]
+      },
+      {
+        "name": "Make Model Year",
+        "kind": "entity",
+        "primary_keys": ["Make", "Model", "Year"],
+        "attributes": []
+      },
+      {
+        "name": "Recall",
+        "kind": "weak_entity",
+        "primary_keys": ["date"],
+        "attributes": ["description"]
+      },
+      {
+        "name": "Customer",
+        "kind": "entity",
+        "primary_keys": ["customer id"],
+        "attributes": ["name", "credit card number"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Rent",
+        "kind": "relationship",
+        "attributes": ["end date", "date of payment", "monthly installment amount", "start date"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "1M"},
+          {"name": "Car", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "Own",
+        "kind": "relationship",
+        "attributes": ["starting mileage"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "1M"},
+          {"name": "Car", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "Review",
+        "kind": "relationship",
+        "attributes": ["date-time", "description", "number of stars"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "0M"},
+          {"name": "Car", "cardinality": "0M"},
+          {"name": "Customer", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Is of",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Car", "cardinality": "1M"},
+          {"name": "Make Model Year", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Has",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Make Model Year", "cardinality": "11"},
+          {"name": "Recall", "cardinality": "0M"}
+        ]
+      }
+    ]
+  }

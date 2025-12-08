@@ -1,0 +1,124 @@
+{
+  "erd_id": "70_1.png",
+  "comment": {
+    "flags":[
+  {
+    "code": "PK_NOT_DEFINED",
+    "target_type": "entity",
+    "target_name": "Recall"
+  },
+  {
+    "code": "WEAK_ENTITY_NO_IDENT_REL",
+    "target_type": "entity",
+    "target_name": "Trip"
+  },
+  {
+    "code": "PK_NOT_DEFINED",
+    "target_type": "entity",
+    "target_name": "Trip"
+  }
+]
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year"]
+    },
+    {
+      "name": "Rented Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["contract start date", "contract end date", "date", "number of rent installments", "current mileage"]
+    },
+    {
+      "name": "Owned Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["starting mileage", "current mileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["description", "date"]
+    },
+    {
+      "name": "Trip",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": []
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Drives",
+      "kind": "identifying_relationship",
+      "attributes": [
+        "Starting mileage"
+      ],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Has1",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Trip",  "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Has2",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Trip",  "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Reviews",
+      "kind": "identifying_relationship",
+      "attributes": ["description", "date-time", "number of stars"],
+      "involved_entities": [
+        {"name": "Trip", "cardinality": "0M"},
+        {"name": "Customer",  "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Xor1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Owned Car",  "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Xor2",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Rented Car",  "cardinality": "01"}
+      ]
+    }
+  ]
+}

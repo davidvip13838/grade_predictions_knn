@@ -1,0 +1,84 @@
+{
+  "erd_id": "16_2.png",
+  "entities": [
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": [
+        "platform_name",
+        "introductory_price_us",
+        "units_sold",
+        "developer_id"       
+      ]
+    },
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": [
+        "name",
+        "platform_id",
+        "year",
+        "genre",
+        "publisher_id"
+      ]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "developed",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"},
+        {"name": "platform", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "published",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"},
+        {"name": "video_game", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "runs on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "11"},
+        {"name": "video_game", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "sold in",
+      "kind": "identifying_relationship",
+      "attributes": ["Sales"],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "11"},
+        {"name": "region", "cardinality": "1M"}
+      ]
+    }
+  ],
+  "comments": [
+    { "comment": "FK referencing developer(id)", "location": "platform.developer_id" },
+    { "comment": "FK referencing platform(platform_id)", "location": "video_game.platform_id" },
+    { "comment": "FK referencing developer(id)", "location": "video_game.publisher_id" }
+  ]
+}
+

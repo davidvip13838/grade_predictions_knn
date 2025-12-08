@@ -1,0 +1,161 @@
+{
+  "erd_id": "65_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": [
+        "license_number",
+        "state"
+      ],
+      "attributes": [
+        "name",
+        "age"
+      ]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": [
+        "customer id"
+      ],
+      "attributes": [
+        "name",
+        "credit_card_number"
+      ]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": [
+        "VIN_number"
+      ],
+      "attributes": [
+        "make",
+        "model",
+        "year",
+        "current_mileage"
+      ]
+    },
+    {
+      "name": "Recalls",
+      "kind": "weak_entity",
+      "primary_keys": [
+        "car_make-model-year"
+      ],
+      "attributes": [
+        "date",
+        "description"
+      ]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": [
+        "date-time"
+      ],
+      "attributes": [
+        "description",
+        "number_of_stars"
+      ]
+    },
+    {
+      "name": "Rental Contract System",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": [
+        "monthly_rent_installment",
+        "monthly_rent_date"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": [
+        "start_date",
+        "end_date"
+      ],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Car",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": [
+        "starting_mileage"
+      ],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Car",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Recalls",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Review",
+          "cardinality": "01"
+        },
+        {
+          "name": "Customer",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Rent Contract",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "11"
+        },
+        {
+          "name": "Rental Contract System",
+          "cardinality": "01"
+        }
+      ]
+    }
+  ]
+}

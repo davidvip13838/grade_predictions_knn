@@ -1,0 +1,84 @@
+{
+  "erd_id": "27_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_Number", "State"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customerID"],
+      "attributes": ["name", "creditCardNumber"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN_Number"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": ["date", "time"],
+      "attributes": ["description", "num_of_stars"]
+    },
+    {
+      "name": "Rent",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["due date", "number of installments"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": ["Start Date", "End Date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Rent", "cardinality": "01"},
+        {"name": "Car",    "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["Starting Mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car",    "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Review",
+      "kind": "relationship",
+      "attributes": ["Number of Stars", "Date-Time", "Description"],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "01"},
+        {"name": "Review", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "recalls",
+      "kind": "identifying_relationship",
+      "attributes": ["model", "make", "year"],
+      "involved_entities": [
+        {"name": "Car",    "cardinality": "0M"},
+        {"name": "Recall", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

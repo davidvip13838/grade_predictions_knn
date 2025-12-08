@@ -1,0 +1,166 @@
+{
+  "erd_id": "122_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Customers",
+      "kind": "entity",
+      "primary_keys": [
+        "customer_id"
+      ],
+      "attributes": [
+        "name",
+        "age"
+      ]
+    },
+    {
+      "name": "Table",
+      "kind": "entity",
+      "primary_keys": [
+        "License_number"
+      ],
+      "attributes": [
+        "State",
+        "Name",
+        "Age",
+        "start_date",
+        "end_date"
+      ]
+    },
+    {
+      "name": "car1",
+      "kind": "entity",
+      "primary_keys": [
+        "license_number"
+      ],
+      "attributes": [
+        "state",
+        "name",
+        "age",
+        "starting_mileage"
+      ]
+    },
+    {
+      "name": "car2",
+      "kind": "entity",
+      "primary_keys": [
+        "VIN_number"
+      ],
+      "attributes": [
+        "make",
+        "model",
+        "year"
+      ]
+    },
+    {
+      "name": "model",
+      "kind": "entity",
+      "primary_keys": [
+        "make"
+      ],
+      "attributes": [
+        "year"
+      ]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": [
+        "date"
+      ],
+      "attributes": [
+        "description"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": [
+        "description",
+        "date-time",
+        "number of stars"
+      ],
+      "involved_entities": [
+        {
+          "name": "Customers",
+          "cardinality": "0M"
+        },
+        {
+          "name": "Table",
+          "cardinality": "01"
+        },
+        {
+          "name": "car2",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "rents",
+      "kind": "relationship",
+      "attributes": [
+        "dates", 
+        "monthly installments"
+      ],
+      "involved_entities": [
+        {
+          "name": "Table",
+          "cardinality": "01"
+        },
+        {
+          "name": "car2",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "owms",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "car1",
+          "cardinality": "01"
+        },
+        {
+          "name": "car2",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "car2",
+          "cardinality": "01"
+        },
+        {
+          "name": "model",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "belongs",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Recall",
+          "cardinality": "01"
+        },
+        {
+          "name": "model",
+          "cardinality": "01"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "erd_id": "50_2.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_FEL",
+        "target_type": "entity",
+        "target_name": "platform"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "video_game",
+      "kind": "weak_entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "platform",
+      "kind": "weak_entity",
+      "primary_keys": ["plaform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+    },
+    {
+      "name": "games_sales",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Run in",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "0M"},
+        {"name": "plaform", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Sold",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "11"},
+        {"name": "games_sales", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Publish",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "1M"},
+        {"name": "developer", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Manufacture",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "plaform", "cardinality": "1M"},
+        {"name": "developer", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Sold in",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "games_sales", "cardinality": "11"},
+        {"name": "region", "cardinality": "11"}
+      ]
+    }
+  ]
+}

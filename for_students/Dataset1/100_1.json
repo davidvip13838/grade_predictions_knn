@@ -1,0 +1,86 @@
+{
+  "erd_id": "100_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["make", "model", "year", "current_mileage"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit_card_number"]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": ["Date", "Time"],
+      "attributes": ["Description", "A_number_of_stars"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": ["Make", "Model", "Year"],
+      "attributes": ["Date", "Description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": ["Starting_Mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": ["Starting_Dates", "End_Dates", "date", "monthly_rent installments"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "UNC"},
+        {"name": "Car", "cardinality": "UNC"},
+	{"name": "Customer", "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "Manufacturer",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Recall", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Post",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "11"},
+        {"name": "Review", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

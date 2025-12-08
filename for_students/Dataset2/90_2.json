@@ -1,0 +1,86 @@
+{
+    "erd_id": "90_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Games_Sales",
+            "kind": "entity",
+            "primary_keys": ["Region_id", "game_rank"],
+            "attributes": ["sales"]
+        },
+        {
+            "name": "Region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        },
+        {
+            "name": "Video_Game",
+            "kind": "entity",
+            "primary_keys": ["Rank"],
+            "attributes": ["name", "platform_id", "year", "genre", "publisher_id"]
+        },
+        {
+            "name": "Platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["platform_name", "introductory_us_price", "units_sold", "developer_id"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Sales in Region",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Region", "cardinality": "1M"},
+                {"name": "Games_Sales", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "HQ region",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Region", "cardinality": "01"},
+                {"name": "developer", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "published by",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "11"},
+                {"name": "Video_Game", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Can be played on",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Platform", "cardinality": "0M"},
+                {"name": "Video_Game", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Developed",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "11"},
+                {"name": "Platform", "cardinality": "0M"}
+            ]
+        }
+    ]
+
+}

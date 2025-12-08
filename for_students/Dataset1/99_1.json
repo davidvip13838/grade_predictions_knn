@@ -1,0 +1,151 @@
+{
+    "erd_id": "99_1.png",
+    "comment": {
+        "flags": [
+            {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"Review"},
+            {"code":"CARDINALITY_GLYPH_CONFLICT","target_type":"relationship","target_name":"posts"}
+        ]
+    },
+    "entities": [
+        {
+            "name": "Driver",
+            "kind": "entity",
+            "primary_keys": [
+                "license_number",
+                "state"
+            ],
+            "attributes": [
+                "name",
+                "age"
+            ]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": [
+                "VIN_number"
+            ],
+            "attributes": [
+                "make",
+                "model",
+                "year",
+                "current_mileage"
+            ]
+        },
+        {
+            "name": "Review",
+            "kind": "entity",
+            "primary_keys": [],
+            "attributes": [
+                "description",
+                "date-time",
+                "stars"
+            ]
+        },
+        {
+            "name": "Recalls",
+            "kind": "entity",
+            "primary_keys": [
+                "date"
+            ],
+            "attributes": [
+                "descriptions"
+            ]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": [
+                "customer_id"
+            ],
+            "attributes": [
+                "name",
+                "credit_card_number"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "own",
+            "kind": "relationship",
+            "attributes": [
+                "starting_mileage"
+            ],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "01"
+                },
+                {
+                    "name":"Car",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "rent",
+            "kind": "relationship",
+            "attributes": [
+                "monthly_rent_installments",
+                "monthly_rent_date",
+                "start_date",
+                "end_date"
+            ],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Car",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "trips",
+            "kind": "identifying_relationship",
+            "attributes":[],
+            "involved_entities":[
+                {
+                    "name": "Driver",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "Review",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "posts",
+            "kind": "identifying_relationship",
+            "attributes":[],
+            "involved_entities": [
+                {
+                    "name": "Customer",
+                    "cardinality": "UNC"
+                },
+                {
+                    "name": "Review",
+                    "cardinality": "0M"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "kind": "relationship",
+            "attributes":[],
+            "involved_entities": [
+                {
+                    "name": "Car",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Recalls",
+                    "cardinality": "0M"
+                }
+            ]
+        }
+    ]
+}

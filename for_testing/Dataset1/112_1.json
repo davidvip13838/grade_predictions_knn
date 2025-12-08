@@ -1,0 +1,149 @@
+{
+    "erd_id": "112_1.png",
+    "entities": [
+      {
+        "name": "Driver",
+        "kind": "entity",
+        "primary_keys": ["license_no", "state"],
+        "attributes": ["name", "age"]
+      },
+      {
+        "name": "Car",
+        "kind": "entity",
+        "primary_keys": ["VIN"],
+        "attributes": ["make", "model", "year", "mileage"]
+      },
+      {
+        "name": "Customer",
+        "kind": "entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "credit_card_no"]
+      },
+      {
+        "name": "Monthly Rent",
+        "kind": "weak_entity",
+        "primary_keys": ["date"],
+        "attributes": ["amount"]
+      },
+      {
+        "name": "Recall",
+        "kind": "weak_entity",
+        "primary_keys": ["date"],
+        "attributes": ["description"]
+      },
+      {
+        "name": "Video Game",
+        "kind": "entity",
+        "primary_keys": ["rank"],
+        "attributes": ["name", "year", "genre"]
+      },
+      {
+        "name": "Developer",
+        "kind": "entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "headquarters"]
+      },
+      {
+        "name": "Platform",
+        "kind": "entity",
+        "primary_keys": ["platform_id"],
+        "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+      },
+      {
+        "name": "Region",
+        "kind": "entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "population"]
+      },
+      {
+        "name": "Game Sale",
+        "kind": "weak_entity",
+        "primary_keys": [],
+        "attributes": ["sale"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "owns",
+        "kind": "relationship",
+        "attributes": ["starting_mileage"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "01"},
+          {"name": "Car", "cardinality": "01"}
+        ]
+      },
+      {
+        "name": "rents",
+        "kind": "relationship",
+        "attributes": ["start_date", "end_date"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "01"},
+          {"name": "Car", "cardinality": "01"},
+          {"name": "Monthly Rent", "cardinality": "1M" ,
+          "comment": "⚠ Missing identifying relationship for weak entity (Monthly Rent) as per specifications" }
+        ]
+      },
+      {
+        "name": "review",
+        "kind": "relationship",
+        "attributes": ["description", "date_time", "stars_no"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "01"},
+          {"name": "Customer", "cardinality": "0M"},
+          {"name": "Car", "cardinality": "01"}
+        ]
+      },
+      {
+        "name": "recalls",
+        "kind": "identifying_relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Car", "cardinality": "01"},
+          {"name": "Recall", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "published",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Developer", "cardinality": "01"},
+          {"name": "Video Game", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "developed",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Developer", "cardinality": "01"},
+          {"name": "Platform", "cardinality": "01"}
+        ]
+      },
+      {
+        "name": "plays on",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Video Game", "cardinality": "01"},
+          {"name": "Platform", "cardinality": "01"}
+        ]
+      },
+      {
+        "name": "sold in",
+        "kind": "identifying_relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Video Game", "cardinality": "0M"},
+          {"name": "Region", "cardinality": "0M"},
+          { "name": "Game Sale", "cardinality": "0M" }
+        ]
+      }
+    ],
+    "comments": [
+      {
+        "comment": "Missing identifying relationship for weak entity Monthly Rent — should trigger WEAK_ENTITY_NO_IDENT_REL"
+      }
+    ]
+  }
+  

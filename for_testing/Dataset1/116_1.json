@@ -1,0 +1,83 @@
+{
+  "erd_id": "116_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "rent_table",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": [
+        "start_date",
+        "end_date",
+        "monthly_rent_installment",
+        "date"
+      ]
+    },
+    {
+      "name": "driver",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "cars",
+      "kind": "entity",
+      "primary_keys": ["vin"],
+      "attributes": ["make", "model", "year", "current_milage"]
+    },
+    {
+      "name": "customers",
+      "primary_keys": ["customer_id"],
+      "kind": "entity",
+      "attributes": ["name", "credit_card_number"]
+    },
+    {
+      "name": "recall_table",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "rent",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "11" },
+        { "name": "cars", "cardinality": "11" },
+        { "name": "rent_table", "cardinality": "01" }
+      ]
+    },
+    {
+      "name": "own",
+      "kind": "relationship",
+      "attributes": ["starting_milage"],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "11" },
+        { "name": "cars", "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "recall",
+      "kind": "identifying relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "cars", "cardinality": "01" },
+        { "name": "recall_table", "cardinality": "01" }
+      ]
+    },
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": ["number_of_stars", "date_time", "description"],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "01" },
+        { "name": "cars", "cardinality": "01" },
+        { "name": "customers", "cardinality": "01" }
+      ]
+    }
+  ]
+}

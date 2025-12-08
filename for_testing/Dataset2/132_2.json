@@ -1,0 +1,70 @@
+{
+    "erd_id": "132_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "video_game",
+            "kind": "entity",
+            "primary_keys": ["rank"],
+            "attributes": ["name", "year", "year", "genre"]
+        },
+        {
+            "name": "region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "games_sales",
+            "kind": "relationship",
+            "attributes": ["sales"],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "01"},
+                {"name": "region", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "game_dev",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "0M"},
+                {"name": "developer", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "game_platform",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "0M"},
+                {"name": "platform", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "platform_dev",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "01"},
+                {"name": "platform", "cardinality": "0M"}
+            ]
+        }
+    ]
+}

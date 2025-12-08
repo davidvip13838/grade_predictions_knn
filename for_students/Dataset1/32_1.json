@@ -1,0 +1,139 @@
+{
+  "erd_id": "32_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "PK_NOT_DEFINED",
+        "target_type": "entity",
+        "target_name": "Recall"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Trip Review1"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Trip Review2"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["make", "model", "year", "current_mileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit_card_number"]
+    },
+    {
+      "name": "Driver (Owner)",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Driver (Renter)",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Recall",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["starting_mileage", "start_date"],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Driver (Owner)",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": ["end_date", "start_date", "installments_date", "installments_amount"],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Driver (Renter)",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Trip Review1",
+      "kind": "relationship",
+      "attributes": ["description", "number_stars", "date-time"],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Customer",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Driver (Owner)",
+          "cardinality": "UNC"
+        }
+      ]
+    },
+    {
+      "name": "Trip Review2",
+      "kind": "relationship",
+      "attributes": ["description", "number_stars", "date-time"],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Customer",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Driver (Renter)",
+          "cardinality": "UNC"
+        }
+      ]
+    }
+  ]
+}

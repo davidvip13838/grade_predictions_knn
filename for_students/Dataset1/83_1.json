@@ -1,0 +1,87 @@
+{
+  "erd_id": "83_1.png",
+  "comment": {
+    "flags": [
+        {"code":"WEAK_ENTITY_NO_IDENT_REL","target_type":"entity","target_name":"recall"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Rented Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "review",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date-time", "number of stars"]
+    },
+    {
+      "name": "recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "monthly rent installment",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Amount paid", "Date"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "11"},
+        {"name": "review", "cardinality": "0M"},
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "monthly rent installment", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "involves",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "review", "cardinality": "0M"},
+        {"name": "Rented Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": ["starting mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Rented Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "rents",
+      "kind": "relationship",
+      "attributes": ["starting Date", "end Date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Rented Car", "cardinality": "01"}
+      ]
+    }
+  ]
+}

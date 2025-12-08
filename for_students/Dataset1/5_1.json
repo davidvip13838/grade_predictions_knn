@@ -1,0 +1,91 @@
+{
+  "erd_id": "5_1.png",
+  "comment": {
+    "flags": [{
+    "code": "PK_NOT_DEFINED",
+    "target_type": "entity",
+    "target_name": "Review"
+  }]
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["vin_number"],
+      "attributes": ["make", "model", "year", "current_mileage"]
+    },
+    {
+      "name": "Review",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["description", "date_time", "number_of_stars"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit_card_number"]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": ["date"],
+      "attributes": ["description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": [
+        "starting_mileage"
+      ],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car",    "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "rents",
+      "kind": "relationship",
+      "attributes": ["monthly_rent_installments", "monthly_rent_date", "start_date", "end_date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car",  "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "trips",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "0M"},
+        {"name": "Review",  "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "posts",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Review", "cardinality": "11"},
+        {"name": "Customer",  "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "no_name1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Recall", "cardinality": "0M"},
+        {"name": "Car",  "cardinality": "1M"}
+      ]
+    }
+  ]
+}

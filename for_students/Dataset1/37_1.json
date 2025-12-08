@@ -1,0 +1,163 @@
+{
+    "erd_id": "37_1.png",
+    "comment": {
+        "flags": [
+            {
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Review"
+            },
+            {
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Owner"
+            },
+            {
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Renter"
+            },
+            {
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Recall"
+            },
+            {
+                "code": "ATTRIBUTE_UNCONNECTED",
+                "target_type": "global",
+                "target_name": ""
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "Review",
+            "kind": "weak_entity",
+            "primary_keys": [
+                "Trip"
+            ],
+            "attributes": [
+                "Description",
+                "Date-Time",
+                "Number of stars"
+            ]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": [
+                "Customer ID"
+            ],
+            "attributes": [
+                "Name",
+                "Credit Card Number"
+            ]
+        },
+        {
+            "name": "Owner",
+            "kind": "weak_entity",
+            "primary_keys": [
+                ""
+            ],
+            "attributes": [
+                "Starting mileage"
+            ]
+        },
+        {
+            "name": "Driver",
+            "kind": "entity",
+            "primary_keys": [
+                "License Number",
+                "State"
+            ],
+            "attributes": [
+                "Name",
+                "Age"
+            ]
+        },
+        {
+            "name": "Renter",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": [
+                "Starting date",
+                "Ending date",
+                "Date of rental installment",
+                "Rent Amount"
+            ]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": [
+                "VIN"
+            ],
+            "attributes": [
+                "Make",
+                "Model",
+                "Year",
+                "Current Mileage"
+            ]
+        },
+        {
+            "name": "Recall",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": [
+                "Date",
+                "Description"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Trip",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Customer",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Review",
+                    "cardinality": "0M"
+                }
+            ]
+        },
+        {
+            "name": "Is",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Car",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "Has",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Car",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Recall",
+                    "cardinality": "01"
+                }
+            ]
+        }
+    ]
+}

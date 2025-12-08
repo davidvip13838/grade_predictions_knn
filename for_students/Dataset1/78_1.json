@@ -1,0 +1,160 @@
+{
+    "erd_id": "78_1.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Driver",
+            "kind": "entity",
+            "primary_keys": [
+                "License Number",
+                "State"
+            ],
+            "attributes": [
+                "Name",
+                "Age"
+            ]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": [
+                "VIN"
+            ],
+            "attributes": [
+                "Make",
+                "Model",
+                "Year",
+                "Current Mileage"
+            ]
+        },
+        {
+            "name": "Monthly Installments",
+            "kind": "entity",
+            "primary_keys": [
+                "Date"
+            ],
+            "attributes": [
+                "Amount"
+            ]
+        },
+        {
+            "name": "Review",
+            "kind": "weak_entity",
+            "primary_keys": [
+                "Date-time"
+            ],
+            "attributes": [
+                "Number of Stars",
+                "Description"
+            ]
+        },
+        {
+            "name": "Recalls",
+            "kind": "entity",
+            "primary_keys": [
+                "Make",
+                "Model",
+                "Year"
+            ],
+            "attributes": [
+                "Description",
+                "Date"
+            ]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": [
+                "Customer ID"
+            ],
+            "attributes": [
+                "Name",
+                "Credit-Card Number"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Own",
+            "kind": "relationship",
+            "attributes": [
+                "Starting Mileage"
+            ],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Car",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "Rent",
+            "kind": "relationship",
+            "attributes": [
+                "Start Date",
+                "End Date"
+            ],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Car",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Monthly Installments",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "Has",
+            "kind": "relationship",
+            "attributes": [
+                "Date",
+                "Description"
+            ],
+            "involved_entities": [
+                {
+                    "name": "Car",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "Recalls",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "Trip",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Car",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Driver",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Review",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Customer",
+                    "cardinality": "01"
+                }
+            ]
+        }
+    ]
+}

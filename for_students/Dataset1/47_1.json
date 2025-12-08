@@ -1,0 +1,78 @@
+{
+  "erd_id": "47_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Drivers",
+      "kind": "entity",
+      "primary_keys": ["License Number", "State"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["Make", "Model", "Year", "Mileage"]
+    },
+    {
+      "name": "Customers",
+      "kind": "entity",
+      "primary_keys": ["Customer ID"],
+      "attributes": ["Name", "Credit Card Number"]
+    },
+    {
+      "name": "Reviews",
+      "kind": "entity",
+      "primary_keys": ["Review ID"],
+      "attributes": ["Description", "Date-Time", "Number of Stars"]
+    },
+    {
+      "name": "Recalls",
+      "kind": "entity",
+      "primary_keys": ["Recall Number"],
+      "attributes": ["Date", "Description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Owner",
+      "kind": "relationship",
+      "attributes": ["Starting Mileage"],
+      "involved_entities": [
+        {"name": "Drivers", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Renter",
+      "kind": "relationship",
+      "attributes": ["Start", "End", "Amount", "Date"],
+      "involved_entities": [
+        {"name": "Drivers", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Posts",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customers", "cardinality": "11"},
+        {"name": "Reviews", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Recalls", "cardinality": "0M"},
+        {"name": "Drivers", "cardinality": "11"},
+        {"name": "Reviews", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

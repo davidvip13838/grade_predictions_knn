@@ -1,0 +1,118 @@
+{
+  "erd_id": "14_2.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": [
+        "id"
+      ],
+      "attributes": [
+        "name",
+        "population"
+      ]
+    },
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": [
+        "rank"
+      ],
+      "attributes": [
+        "name",
+        "year",
+        "genre"
+      ]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": [
+        "id"
+      ],
+      "attributes": [
+        "name",
+        "headquarters"
+      ]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": [
+        "platform_id"
+      ],
+      "attributes": [
+        "platform_name",
+        "introductory_price_us",
+        "units_sold"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "sold in",
+      "kind": "relationship",
+      "attributes": [
+        "sales"
+      ],
+      "involved_entities": [
+        {
+          "name": "region",
+          "cardinality": "01"
+        },
+        {
+          "name": "video_game",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "developed by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "region",
+          "cardinality": "01"
+        },
+        {
+          "name": "developer",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "developed on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "developer",
+          "cardinality": "0M"
+        },
+        {
+          "name": "platform",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "available on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "video_game",
+          "cardinality": "0M"
+        },
+        {
+          "name": "platform",
+          "cardinality": "11"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+    "erd_id": "56_1.png",
+    "comment": {
+      "flags": [
+        {
+          "code": "WEAK_ENTITY_NO_IDENT_REL",
+          "target_type": "entity",
+          "target_name": "Review"
+        },
+        {
+          "code": "WEAK_ENTITY_NO_IDENT_REL",
+          "target_type": "entity",
+          "target_name": "Monthly Rent"
+        },
+        {
+          "code": "PK_NOT_DEFINED",
+          "target_type": "entity",
+          "target_name": "Trip"
+        },
+        {
+          "code": "PK_NOT_DEFINED",
+          "target_type": "entity",
+          "target_name": "Make-Model-Year"
+        },
+        {
+          "code": "PK_NOT_DEFINED",
+          "target_type": "entity",
+          "target_name": "Recall"
+        }
+      ]
+    },
+    "entities": [
+      {
+        "name": "Review",
+        "kind": "weak_entity",
+        "primary_keys": ["Date-Time"],
+        "attributes": ["Description", "Number of Stars"]
+      },
+      {
+        "name": "Customer",
+        "kind": "entity",
+        "primary_keys": ["Customer_ID"],
+        "attributes": ["Name", "Credit Card Number"]
+      },
+      {
+        "name": "Trip",
+        "kind": "entity",
+        "primary_keys": [],
+        "attributes": []
+      },
+      {
+        "name": "Driver",
+        "kind": "entity",
+        "primary_keys": ["License Number, State"],
+        "attributes": ["Name", "Age"]
+      },
+      {
+        "name": "Car",
+        "kind": "entity",
+        "primary_keys": ["VIN_Number"],
+        "attributes": ["Current Mileage"]
+      },
+      {
+        "name": "Monthly Rent",
+        "kind": "weak_entity",
+        "primary_keys": ["Date"],
+        "attributes": ["Amount of Money"]
+      },
+      {
+        "name": "Make-Model-Year",
+        "kind": "entity",
+        "primary_keys": [],
+        "attributes": []
+      },
+      {
+        "name": "Recall",
+        "kind": "entity",
+        "primary_keys": [],
+        "attributes": ["Date", "Description"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Contains",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Review", "cardinality": "11"},
+          {"name": "Trip", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Does",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Customer", "cardinality": "11"},
+          {"name": "Trip", "cardinality": "1M"}
+        ]
+      },
+      {
+        "name": "Goes",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Trip", "cardinality": "1M"},
+          {"name": "Car", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Own",
+        "kind": "relationship",
+        "attributes": ["Starting Mileage"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "11"},
+          {"name": "Car", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "Rent",
+        "kind": "relationship",
+        "attributes": ["Start Date", "End Date"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "11"},
+          {"name": "Car", "cardinality": "0M"},
+          {"name": "Monthly Rent", "cardinality": "1M"}
+        ]
+      },
+      {
+        "name": "Has",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Car", "cardinality": "11"},
+          {"name": "Make-Model-Year", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Defect",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Make-Model-Year", "cardinality": "1M"},
+          {"name": "Recall", "cardinality": "0M"}
+        ]
+      }
+    ]
+  }

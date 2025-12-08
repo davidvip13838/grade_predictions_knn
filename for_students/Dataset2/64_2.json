@@ -1,0 +1,82 @@
+{
+  "erd_id": "64_2.png",
+  "comment": {
+    "flags": [
+      {"code": "FK_DRAWN", "target_type": "entity", "target_name": "video_game"},
+      {"code": "FK_DRAWN", "target_type": "entity", "target_name": "platform"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["platform_id", "publisher_id", "name", "year", "genre"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["developer_id", "platform_name", "introductory_price_us", "units_sold"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Sold in",
+      "kind": "relationship",
+      "attributes": ["Sales"],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "0M"},
+        {"name": "region", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Hosted on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "11"},
+        {"name": "platform", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Published by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "0M"},
+        {"name": "developer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Developed by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "0M"},
+        {"name": "developer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Headquarter in",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"},
+        {"name": "region", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

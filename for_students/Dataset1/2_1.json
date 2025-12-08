@@ -1,0 +1,84 @@
+{
+  "erd_id": "2_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "review",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date-time", "stars"]
+    },
+    {
+      "name": "car renter",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age", "installments"]
+    },
+    {
+      "name": "car owner",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age", "starting mileage"]
+    },
+    {
+      "name": "car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "mileage"]
+    },
+    {
+      "name": "recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "trip",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "customer", "cardinality": "1M"},
+        { "name": "review", "cardinality": "01"},
+        { "name": "car renter", "cardinality": "1M"},
+        { "name": "car owner", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "car", "cardinality": "11"},
+        { "name": "car owner", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "contract",
+      "kind": "relationship",
+      "attributes": ["start", "end"],
+      "involved_entities": [
+        { "name": "car", "cardinality": "11"},
+        { "name": "car renter", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "car", "cardinality": "11"},
+        { "name": "recall", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

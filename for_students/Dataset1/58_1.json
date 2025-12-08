@@ -1,0 +1,68 @@
+{
+  "erd_id": "58_1.png",
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number, state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["Name", "credit card number"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "current milage"]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": ["recallID"],
+      "attributes": ["make", "model", "year", "date", "description"]
+    }
+  ],
+    "relationships": [
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": ["number of stars", "date-time", "description"],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Driver", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": ["starting milage"],
+      "involved_entities": [
+        {"name": "Recall", "cardinality": "1M"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Renter",
+      "kind": "relationship",
+      "attributes": ["date", "Starting date", "Ending date", "monthly rent installments"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Owner",
+      "kind": "relationship",
+      "attributes": ["starting milage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "UNC"},
+        {"name": "Recall", "cardinality": "UNC"}
+      ]
+    }
+  ]
+}

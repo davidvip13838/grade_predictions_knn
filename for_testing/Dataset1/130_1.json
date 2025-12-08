@@ -1,0 +1,83 @@
+{
+  "erd_id": "130_1.png",
+  "entities": [
+    {
+      "name": "driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["current mileage"]
+    },
+    {
+      "name": "make-model-year",
+      "kind": "entity",
+      "primary_keys": ["make", "model", "year"],
+      "attributes": []
+    },
+    {
+      "name": "recall",
+      "kind": "weak_entity",
+      "primary_keys": ["date"],
+      "attributes": ["description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "rents",
+      "kind": "relationship",
+      "attributes": ["start date", "end date", "date", "number of rent installments"],
+      "involved_entities": [
+	{"name": "driver", "cardinality": "01"},
+	{"name": "car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "reviews",
+      "kind": "relationship",
+      "attributes": ["description", "number of stars", "date-time"],
+      "involved_entities": [
+	{"name": "customer", "cardinality": "UNC"},
+	{"name": "driver", "cardinality": "UNC"},
+	{"name": "car", "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": ["starting milage"],
+      "involved_entities": [
+	{"name": "driver", "cardinality": "01"},
+	{"name": "car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "is type",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+	{"name": "car", "cardinality": "01"},
+	{"name": "make-model-year", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+	{"name": "make-model-year", "cardinality": "01"},
+	{"name": "recall", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

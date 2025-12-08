@@ -1,0 +1,76 @@
+{
+    "erd_id": "101_2.png",
+    "comment": {
+        "flags": [
+            {
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Video Game"
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "Region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "Developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        },
+        {
+            "name": "Platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+        },
+        {
+            "name": "Video Game",
+            "kind": "weak_entity",
+            "primary_keys": ["rank"],
+            "attributes": ["name", "year", "genre"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Sold In",
+            "kind": "relationship",
+            "attributes": ["Sales"],
+            "involved_entities": [
+                {"name": "Video Game", "cardinality": "0M"},
+                {"name": "Region", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "Publisher",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Video Game", "cardinality": "0M"},
+                {"name": "Developer", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Published_On",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Video Game", "cardinality": "0M"},
+                {"name": "Platform", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Manufacturer",
+            "kind": "relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Platform", "cardinality": "0M"},
+                {"name": "Developer", "cardinality": "11"}
+            ]
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "erd_id": "59_2.png",
+    "entities": [
+      {
+        "name": "Video_game",
+        "kind": "entity",
+        "primary_keys": ["rank"],
+        "attributes": ["name", "platform_id", "year", "genre", "publisher_id"]
+      },
+      {
+        "name": "Region",
+        "kind": "entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "population"]
+      },
+      {
+        "name": "Developer",
+        "kind": "entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "headquarters"]
+      },
+      {
+        "name": "Platform",
+        "kind": "entity",
+        "primary_keys": ["platform_id"],
+        "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+      },
+      {
+        "name": "Games_Sales",
+        "kind": "weak entity",
+        "primary_keys": ["region_id", "game_rank"],
+        "attributes": ["sales"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "has",
+        "kind": "identifying relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Region", "cardinality": "11"},
+          {"name": "Games_Sales", "cardinality": "1M"},
+          {"name": "Video_game", "cardinality": "1M"},
+          {"name": "Platform", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "In",
+        "kind": "identifying relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Video_game", "cardinality": "11"},
+          {"name": "Games_Sales", "cardinality": "1M"}
+        ]
+      },
+      {
+        "name": "Makes",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Developer", "cardinality": "1M"},
+          {"name": "Video_game", "cardinality": "0M"}
+        ]
+      }
+    ]
+  }

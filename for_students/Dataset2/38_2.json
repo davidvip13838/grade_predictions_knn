@@ -1,0 +1,94 @@
+{
+  "erd_id": "38_2.png",
+  "comment": {
+    "flags": [
+      {"code":"FK_DRAWN","target_type":"weak_entity","target_name":"game_sales"},
+      {"code":"FK_DRAWN","target_type":"weak_entity","target_name":"video_game"},
+      {"code":"FK_DRAWN","target_type":"weak_entity","target_name":"platform"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "game_sales",
+      "kind": "weak_entity",
+      "primary_keys": ["game_rank", "region_id"],
+      "attributes": ["region_id", "game_rank", "sales"]
+    },
+    {
+      "name": "video_game",
+      "kind": "weak_entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre", "platform_id", "publisher_id"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": [
+        "developer_id",
+        "platform_name",
+        "introductory_price_us",
+        "units_sold"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "has 1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "region", "cardinality": "11" },
+        { "name": "game_sales", "cardinality": "0M" }
+      ]
+    },
+    {
+      "name": "has 2",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "video_game", "cardinality": "11" },
+        { "name": "game_sales", "cardinality": "0M" }
+      ]
+    },
+    {
+      "name": "has 3",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "developer", "cardinality": "11" },
+        { "name": "video_game", "cardinality": "0M" }
+      ]
+    },
+    {
+      "name": "has 4",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "platform", "cardinality": "0M" },
+        { "name": "developer", "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "has 5",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "video_game", "cardinality": "0M" },
+        { "name": "platform", "cardinality": "11" }
+      ]
+    }
+  ]
+}

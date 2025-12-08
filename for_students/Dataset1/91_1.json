@@ -1,0 +1,141 @@
+{
+  "erd_id": "91_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "PK_NOT_DEFINED",
+        "target_type": "entity",
+        "target_name": "Recall"
+      },
+      {
+        "code": "PK_NOT_DEFINED",
+        "target_type": "entity",
+        "target_name": "Trip"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "has1"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "has2"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "has3"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["make", "model", "year", "mileage"]
+    },
+    {
+      "name": "Customers",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "Trip",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date", "time", "number of stars"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "has1",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Recall",
+          "cardinality": "UNC"
+        }
+      ]
+    },
+    {
+      "name": "has2",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customers",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "UNC"
+        }
+      ]
+    },
+    {
+      "name": "has3",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "UNC"
+        }
+      ]
+    },
+    {
+      "name": "own",
+      "kind": "relationship",
+      "attributes": ["starting mileage"],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "01"
+        },
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        }
+      ] 
+    },
+    {
+      "name": "rent",
+      "kind": "relationship",
+      "attributes": ["start date", "end date", "date", "amount of monthly payments made"],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "01"
+        },
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        }
+      ] 
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "erd_id": "92_1.png",
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["liscence_number, state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer i.d."],
+      "attributes": ["Name", "credit card number"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["vin_number"],
+      "attributes": ["make", "model", "year", "curr_milage"]
+    },
+    {
+      "name": "Trip (weak entity)",
+      "kind": "entity",
+      "primary_keys": ["date_time"],
+      "attributes": ["num_of_stars", "description"]
+    },
+    {
+      "name": "Recall Log",
+      "kind": "entity",
+      "primary_keys": ["date_time"],
+      "attributes": ["description"]
+    }
+  ],
+    "relationships": [
+    {
+      "name": "rents",
+      "kind": "relationship",
+      "attributes": ["start_date", "charge_date", "charge_amt", "end_date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["start_milage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Drives",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Trip", "cardinality": "1M"}
+      ]
+    },
+        {
+      "name": "recalls",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Recall Log", "cardinality": "01"},
+        {"name": "Car", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "orders",
+      "kind": "identifying_relationship",
+      "attributes": [""],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "11"},
+        {"name": "Trip (weak entity)", "cardinality": "1M"}
+      ]
+    }
+  ]
+}

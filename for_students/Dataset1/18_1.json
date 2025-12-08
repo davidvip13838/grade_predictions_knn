@@ -1,0 +1,196 @@
+{
+  "erd_id": "18_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "FK_DRAWN",
+        "target_type": "entity",
+        "target_name": "Renter Driver"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit card"]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Description", "Date-time", "Stars"]
+    },
+    {
+      "name": "Owner Driver",
+      "kind": "entity",
+      "primary_keys": ["License Number", "State"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Starting Mileage",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Starting Mileage"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["Make", "Model", "Year", "Current Mileage"]
+    },
+    {
+      "name": "Renter Driver",
+      "kind": "entity",
+      "primary_keys": ["License Number", "State"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Rent Contract",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["start date", "end date", "installment amount", "installment date"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Recall Date", "Recall Description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Writes",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customer",
+          "cardinality": "01"
+        },
+        {
+          "name": "Review",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "Books Trip With",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customer",
+          "cardinality": "11"
+        },
+        {
+          "name": "Owner Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Renter Driver",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Owner Driver",
+          "cardinality": "11"
+        },
+        {
+          "name": "Car",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Records",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Owner Driver",
+          "cardinality": "11"
+        },
+        {
+          "name": "Starting Mileage",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Review",
+          "cardinality": "11"
+        },
+        {
+          "name": "Car",
+          "cardinality": "11"
+        },
+        {
+          "name": "Owner Driver",
+          "cardinality": "01"
+        },
+        {
+          "name": "Renter Driver",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Follows",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Renter Driver",
+          "cardinality": "11"
+        },
+        {
+          "name": "Rent Contract",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Renter Driver",
+          "cardinality": "11"
+        },
+        {
+          "name": "Car",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Describes",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "01"
+        },
+        {
+          "name": "Recall",
+          "cardinality": "01"
+        }
+      ]
+    }
+  ]
+}

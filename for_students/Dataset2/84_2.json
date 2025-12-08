@@ -1,0 +1,91 @@
+{
+  "erd_id": "84_2.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Developed by"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Created by"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Runs on"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Sold in"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "platform_id", "year", "genre", "publisher_id"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Developed by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "11"},
+        {"name": "developer", "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "Created by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "11"},
+        {"name": "developer", "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "Runs on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "11"},
+        {"name": "platform", "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "Sold in",
+      "kind": "relationship",
+      "attributes": ["Sales"],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "UNC"},
+        {"name": "region", "cardinality": "UNC"}
+      ]
+    }
+  ]
+}

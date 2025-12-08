@@ -1,0 +1,83 @@
+{
+  "erd_id": "81_2.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "game_sales"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["introductory_price", "units_sold", "platform_name"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "games_sales",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["sales"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Game on platform",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "1M"},
+        {"name": "platform", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "published",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "01"},
+        {"name": "developer", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "developed by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "11"},
+        {"name": "developer", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "game sold in region",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "01"},
+        {"name": "region", "cardinality": "01"},
+        {"name": "games_sales", "cardinality": "01"}
+      ]
+    }
+  ]
+}

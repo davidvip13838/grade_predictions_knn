@@ -1,0 +1,77 @@
+{
+  "erd_id": "46_2.png",
+  "entities": [
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name","year", "genre"]
+    },
+    {
+      "name": "game_sales",
+      "kind": "entity",
+      "primary_keys": ["region_id", "game_rank"],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["developer_id"],
+      "attributes": ["name", "headquarters"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "played on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "1M"},
+        {"name": "platform", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "developed",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"},
+        {"name": "region", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "published",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "OM"},
+        {"name": "developer", "cardinality": "11"}
+
+      ]
+    },
+     
+    {
+      "name": "sold",
+      "kind": "relationship",
+      "attributes": ["sales"],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "0M"}, 
+        {"name": "", "cardinality": "1M"}
+
+      ]
+    }
+
+  ]
+}

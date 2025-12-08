@@ -1,0 +1,98 @@
+{
+    "erd_id": "10_2.png",
+    "comment": {
+        "flags": [
+            {
+                "code": "FK_DRAWN",
+                "target_type": "entity",
+                "target_name": "video_game"
+            },
+            {
+                "code": "FK_DRAWN",
+                "target_type": "entity",
+                "target_name": "platform"
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "games_sales",
+            "kind": "entity",
+            "primary_keys": ["region_id", "game_rank"],
+            "attributes": ["sales"]
+        },
+        {
+            "name": "region",
+            "kind": "weak_entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "video_game",
+            "kind": "entity",
+            "primary_keys": ["rank"],
+            "attributes": ["platform_id", "publisher_id", "name", "year",
+                    "genre"]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["developer_id", "platform_name",
+                    "introductory_price_us", "units_sold"]
+        },
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "in_region",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "games_sales", "cardinality": "01"},
+                {"name": "region", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "sales_in",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "games_sales", "cardinality": "1M"},
+                {"name": "video_game", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "runs_on",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "1M"},
+                {"name": "platform", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "published_by",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "1M"},
+                {"name": "developer", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "developed_by",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "01"},
+                {"name": "platform", "cardinality": "1M"}
+            ]
+        }
+    ]
+}

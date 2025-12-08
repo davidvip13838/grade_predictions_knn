@@ -1,0 +1,85 @@
+{
+    "erd_id": "59_1.png",
+    "comment": {
+        "flags": [
+            {
+                "code": "FK_DRAWN",
+                "target_type": "entity",
+                "target_name": "Drivers"
+            },
+            {
+                "code": "FK_DRAWN",
+                "target_type": "entity",
+                "target_name": "Cars"
+            },
+            {
+                "code": "RELATIONSHIP_DANGLING",
+                "target_type": "relationship",
+                "target_name": "Recalls"
+            },
+            {
+                "code": "CARDINALITY_GLYPH_CONFLICT",
+                "target_type": "relationship",
+                "target_name": "Recalls"
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "Customers",
+            "kind": "entity",
+            "primary_keys": ["customer_id"],
+            "attributes": ["customer_name", "credit_num"]
+        },
+        {
+            "name": "Drivers",
+            "kind": "entity",
+            "primary_keys": ["license_num", "state"],
+            "attributes": ["name", "age"]
+        },
+        {
+            "name": "Cars",
+            "kind": "entity",
+            "primary_keys": ["vin_num"],
+            "attributes": ["make", "model", "curr_mileage"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Reviews",
+            "kind": "relationship",
+            "attributes": ["Description", "Name", "Num_Stars"],
+            "involved_entities": [
+                {"name": "Customers", "cardinality": "0M"},
+                {"name": "Drivers", "cardinality": "1M"},
+                {"name": "Cars", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "Rents",
+            "kind": "relationship",
+            "attributes": ["Start Date", "End Date", "Date of Payment", "Amount for Payent"],
+            "involved_entities": [
+                {"name": "Drivers", "cardinality": "11"},
+                {"name": "Cars", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Recalls",
+            "kind": "relationship",
+            "attributes": ["Description", "Date"],
+            "involved_entities": [
+                {"name": "Cars", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "Owns",
+            "kind": "relationship",
+            "attributes": ["Start Mileage", "End Mileage"],
+            "involved_entities": [
+                {"name": "Cars", "cardinality": "01"},
+                {"name": "Drivers", "cardinality": "11"}
+            ]
+        }
+    ]
+}

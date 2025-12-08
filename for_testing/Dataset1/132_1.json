@@ -1,0 +1,185 @@
+{
+    "erd_id": "132_1.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Reviews",
+            "kind": "entity",
+            "primary_keys": [
+                "review-number"
+            ],
+            "attributes": [
+                "description",
+                "date-time",
+                "stars"
+            ]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": [
+                "customer-id",
+                "name",
+                "credit-card-number"
+            ],
+            "attributes": []
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": [
+                "VIN-number"
+            ],
+            "attributes": [
+                "make",
+                "model",
+                "year",
+                "current-mileage"
+            ]
+        },
+        {
+            "name": "Driver",
+            "kind": "entity",
+            "primary_keys": [
+                "license-number",
+                "state"
+            ],
+            "attributes": [
+                "name",
+                "age"
+            ]
+        },
+        {
+            "name": "Rental-Contracts",
+            "kind": "entity",
+            "primary_keys": [
+                "rental-number"
+            ],
+            "attributes": [
+                "starting-date",
+                "ending-date"
+            ]
+        },
+        {
+            "name": "Rental-Payments",
+            "kind": "entity",
+            "primary_keys": [
+                "date"
+            ],
+            "attributes": [
+                "amount"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Author",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Customer",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Reviews",
+                    "cardinality": "0M"
+                }
+            ]
+        },
+        {
+            "name": "Rode-in",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Reviews",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "Car",
+                    "cardinality": "11"
+                }
+            ]
+        },
+        {
+            "name": "Driven-by",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Reviews",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "Driver",
+                    "cardinality": "11"
+                }
+            ]
+        },
+        {
+            "name": "Owns",
+            "kind": "relationship",
+            "attributes": [
+                "starting-mileage"
+            ],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "01"
+                },
+                {
+                    "name": "Car",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "Rented",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Car",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Rental-Contracts",
+                    "cardinality": "0M"
+                }
+            ]
+        },
+        {
+            "name": "Rents",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Driver",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Rental-Contracts",
+                    "cardinality": "01"
+                }
+            ]
+        },
+        {
+            "name": "Payments",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "Rental-Contracts",
+                    "cardinality": "11"
+                },
+                {
+                    "name": "Rental-Payments",
+                    "cardinality": "0M"
+                }
+            ]
+        }
+    ]
+}

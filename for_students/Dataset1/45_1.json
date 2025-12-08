@@ -1,0 +1,118 @@
+{
+  "erd_id": "45_1.png",
+  "entities": [
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["CustomerID"],
+      "attributes": ["name", "credit_card_number"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["current_mileage"]
+    },
+    {
+      "name": "car_info",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["make", "model", "year"]
+    },
+    {
+      "name": "Trip_Review",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date_time", "description", "number_of_stars"]
+    },
+    {
+      "name": "Car Installments",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "amount"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "driven_by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Trip_Review", "cardinality": "0M"},
+        {"name": "Driver",    "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": [
+        "starting mileage"
+      ],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "1M"},
+        {"name": "car_info",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "recalls",
+      "kind": "relationship",
+      "attributes": [
+        "description", "date"
+      ],
+      "involved_entities": [
+        {"name": "car_info", "cardinality": "01"},
+        {"name": "car_info",    "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "rents",
+      "kind": "relationship",
+      "attributes": [
+        "start_date", "end_date"
+      ],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Driver",    "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "pays",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car Installment",    "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "posts",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "01"},
+        {"name": "Trip_Review",    "cardinality": "0M"}
+      ]
+    }
+  ],
+  "comment": {
+    "flags": [
+        {"code":"FK_DRAWN","target_type":"entity","target_name":"car_info"},
+        {"code":"RELATIONSHIP_DANGLING","target_type":"relationship","target_name":"recalls"}
+    ]
+  } 
+}

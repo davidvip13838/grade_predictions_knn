@@ -1,0 +1,95 @@
+{
+  "erd_id": "125_2.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "platform_id", "year", "genre", "publisher_id"]
+    },
+
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+    },
+    {
+      "name": "game_sales",
+      "kind": "weak_entity",
+      "primary_keys": ["region_id", "game_rank"],
+      "attributes": ["sales"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Developed1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "0M"},
+        {"name": "developer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "On",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "11"},
+        {"name": "Video_game",  "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Developed2",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "0M"},
+        {"name": "developer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Based In",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "0M"},
+        {"name": "region", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video_game", "cardinality": "11"},
+        {"name": "games_sales", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Sales In",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "games_sales", "cardinality": "1M"},
+        {"name": "region", "cardinality": "11"}
+      ]
+    }
+  ]
+}

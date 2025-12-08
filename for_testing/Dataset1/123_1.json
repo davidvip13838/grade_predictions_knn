@@ -1,0 +1,142 @@
+{
+  "erd_id": "123_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "Recalls"
+      },
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "Reviews"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Has"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Is"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFLICT",
+        "target_type": "relationship",
+        "target_name": "Trip"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VINNum"],
+      "attributes": ["Make", "Model", "Year", "CurrentMileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["CustomerID"],
+      "attributes": ["Name", "CCNum"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["LicenseNum", "State"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Recalls",
+      "kind": "weak_entity",
+      "primary_keys": ["Make", "Model", "Year"],
+      "attributes": ["RecallDate", "Description"]
+    },
+    {
+      "name": "Reviews",
+      "kind": "weak_entity",
+      "primary_keys": ["Driver_Name", "Driver_Car"],
+      "attributes": ["Description", "Date_Time", "Num_Stars"]
+    },
+    {
+      "name": "SUBER_Own",
+      "kind": "entity",
+      "primary_keys": ["LicenseNum", "State"],
+      "attributes": ["startingMileage"]
+    },
+    {
+      "name": "SUBER_Rent",
+      "kind": "entity",
+      "primary_keys": ["LicenseNum", "State"],
+      "attributes": ["StartDate", "EndDate", "RentDate", "RentAmount"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Has",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "Recalls",
+          "cardinality": "UNC"
+        }
+      ]
+    },
+    {
+      "name": "Is",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "UNC"
+        },
+        {
+          "name": "SUBER_Own",
+          "cardinality": "01"
+        },
+        {
+          "name": "SUBER_Rent",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "01"
+        },
+        {
+          "name": "Driver",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customer",
+          "cardinality": "11"
+        },
+        {
+          "name": "Reviews",
+          "cardinality": "UNC"
+        }
+      ]
+    }
+  ]
+}

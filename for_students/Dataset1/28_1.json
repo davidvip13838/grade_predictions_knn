@@ -1,0 +1,132 @@
+{
+    "erd_id": "28_1.png", 
+    "entities": [
+        {
+            "name": "driver", 
+            "kind": "entity", 
+            "primary_keys": ["license_number", "state"], 
+            "attributes": ["name", "age"]
+        }, 
+        {
+            "name": "car", 
+            "kind": "entity", 
+            "primary_keys": ["vin_number"], 
+            "attributes": ["make", "model", "year", "current_mileage"]
+        }, 
+        {
+            "name": "recall", 
+            "kind": "weak_entity", 
+            "primary_keys": [], 
+            "attributes": ["date", "description"]
+        }, 
+        {
+            "name": "review", 
+            "kind": "weak_entity", 
+            "primary_keys": [], 
+            "attributes": ["description", "date-time", "number_of_stars"]
+        }, 
+        {
+            "name": "customer", 
+            "kind": "entity", 
+            "primary_keys": ["customer_id"], 
+            "attributes": ["name", "credit_card_number"]
+        }
+    ], 
+    "relationships": [
+        {
+            "name": "own", 
+            "kind": "relationship", 
+            "attributes": ["starting_mileage"], 
+            "involved_entities": [
+                {
+                    "name": "driver", 
+                    "cardinality": "01"
+                }, 
+                {
+                    "name": "car", 
+                    "cardinality": "01"
+                }
+            ]
+        }, 
+        {
+            "name": "rent", 
+            "kind": "relationship", 
+            "attributes": [
+                "ending_dates", 
+                "date", 
+                "mr", 
+                "starting_dates"
+            ], 
+            "involved_entities": [
+                {
+                    "name": "driver", 
+                    "cardinality": "01"
+                }, 
+                {
+                    "name": "car", 
+                    "cardinality": "01"
+                }
+            ]
+        }, 
+        {
+            "name": "recall", 
+            "kind": "identifying_relationship", 
+            "attributes": [], 
+            "involved_entities": [
+                {
+                    "name": "car", 
+                    "cardinality": "11"
+                }, 
+                {
+                    "name": "recall", 
+                    "cardinality": "0M"
+                }
+            ]
+        }, 
+        {
+            "name": "involving1", 
+            "kind": "identifying_relationship", 
+            "attributes": [], 
+            "involved_entities": [
+                {
+                    "name": "driver", 
+                    "cardinality": "11"
+                }, 
+                {
+                    "name": "review", 
+                    "cardinality": "11"
+                }
+            ]
+        }, 
+        {
+            "name": "involving2", 
+            "kind": "identifying_relationship", 
+            "attributes": [], 
+            "involved_entities": [
+                {
+                    "name": "car", 
+                    "cardinality": "11"
+                }, 
+                {
+                    "name": "review", 
+                    "cardinality": "11"
+                }
+            ]
+        }, 
+        {
+            "name": "post", 
+            "kind": "identifying_relationship", 
+            "attributes": [], 
+            "involved_entities": [
+                {
+                    "name": "review", 
+                    "cardinality": "01"
+                }, 
+                {
+                    "name": "customer", 
+                    "cardinality": "11"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,89 @@
+{
+  "erd_id": "122_2.png",
+  "entities": [
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["License Number"],
+      "attributes": ["Name", "Age", "state", "starting_mileage"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN Number"],
+      "attributes": ["Make", "Model", "Year"]
+    },
+    {
+      "name": "Customers",
+      "kind": "entity",
+      "primary_keys": ["Customer_id"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": ["date"],
+      "attributes": ["description"]
+    },
+    {
+      "name": "model",
+      "kind": "entity",
+      "primary_keys": ["make"],
+      "attributes": ["year"]
+    },
+    {
+      "name": "table",
+      "kind": "entity",
+      "primary_keys": ["License_Number"],
+      "attributes": ["Name", "Age", "state", "start_date", "end_date"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "belongs",
+      "kind": "relationship",
+      "attributes": ["Starting mileage"],
+      "involved_entities": [
+        {"name": "model", "cardinality": "01"},
+        {"name": "recall", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": ["Starting mileage"],
+      "involved_entities": [
+        {"name": "car", "cardinality": "01"},
+        {"name": "car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": ["dates", "monthly installments"],
+      "involved_entities": [
+        {"name": "table", "cardinality": "01"},
+        {"name": "Car",  "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "model", "cardinality": "01"},
+        {"name": "Car",  "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Review",
+      "kind": "relationship",
+      "attributes": ["Date-time", "Description", "Number of Stars"],
+      "involved_entities": [
+        {"name": "Customers", "cardinality": "0M"},
+        {"name": "table",  "cardinality": "0M"},
+        {"name": "Car",  "cardinality": "01"}
+      ]
+    }
+  ]
+}

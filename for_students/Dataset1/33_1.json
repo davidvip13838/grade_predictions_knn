@@ -1,0 +1,84 @@
+{
+  "erd_id": "33_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "rental"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "customer",
+      "kind": "entity",
+      "primary_keys": ["customerid"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "rental",
+      "kind": "weak_entity",
+      "primary_keys": ["paymentno"],
+      "attributes": ["date", "monthly installments amount"]
+    },
+    {
+      "name": "car",
+      "kind": "entity",
+      "primary_keys": ["vin number"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "recalls",
+      "kind": "weak_entity",
+      "primary_keys": ["make-year-model"],
+      "attributes": ["date", "description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "rents",
+      "kind": "identifying_relationship",
+      "attributes": ["contract start date", "contract end date"],
+      "involved_entities": [
+        {"name": "driver", "cardinality": "01"},
+        {"name": "rental", "cardinality": "01"},
+        {"name": "car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": ["starting mileage"],
+      "involved_entities": [
+        {"name": "driver", "cardinality": "01"},
+        {"name": "car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": ["date-time", "description", "number of stars"],
+      "involved_entities": [
+        {"name": "customer", "cardinality": "01"},
+        {"name": "driver", "cardinality": "01"},
+        {"name": "car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "car", "cardinality": "1M"},
+        {"name": "recalls", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

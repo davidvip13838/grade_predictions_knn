@@ -1,0 +1,85 @@
+{
+  "erd_id": "124_2.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "game_sales",
+      "kind": "entity",
+      "primary_keys": ["region_id, game_rank"],
+      "attributes": ["sales"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "in",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "region", "cardinality": "11"},
+        {"name": "game_sales", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "has1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "game_sales", "cardinality": "1M"},
+        {"name": "video_game", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "has2",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"},
+        {"name": "video_game", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "has3",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "11"},
+        {"name": "video_game", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "has4",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"},
+        {"name": "platform", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

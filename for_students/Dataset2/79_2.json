@@ -1,0 +1,92 @@
+{
+  "erd_id": "79_2.png",
+  "comment": {
+    "flags": [{"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"game_sales"}
+            ]
+  },
+  "entities": [
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "platform_id", "year", "genre", "publisher_id"]
+    },
+    {
+      "name": "game_sales",
+      "kind": "entity",
+      "primary_keys": ["region_id", "game_rank"],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["text", "population"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Made for",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "01"},
+        {"name": "game_sales", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "game_sales", "cardinality": "1M"},
+        {"name": "video_game", "cardinality": "11"}
+
+      ]
+    },
+    {
+      "name": "sold in",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "region", "cardinality": "11"},
+        {"name": "game_sales", "cardinality": "1M"}
+
+      ]
+    },
+    {
+      "name": "Made By",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "11"}, 
+        {"name": "developer", "cardinality": "11"}
+
+
+      ]
+    },
+     {
+      "name": "Made By",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "11"}, 
+        {"name": "platform", "cardinality": "11"}
+
+      ]
+    }
+
+  ]
+}

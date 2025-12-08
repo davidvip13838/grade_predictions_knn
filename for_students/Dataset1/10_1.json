@@ -1,0 +1,134 @@
+{
+  "erd_id": "10_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "FK_DRAWN",
+        "target_type": "weak_entity",
+        "target_name": "review"
+      },
+      {
+        "code": "FK_DRAWN",
+        "target_type": "entity",
+        "target_name": "trip"
+      },
+      {
+        "code": "FK_DRAWN",
+        "target_type": "entity",
+        "target_name": "driver"
+      },
+      {
+        "code": "FK_DRAWN",
+        "target_type": "entity",
+        "target_name": "rental"
+      },
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "review"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "review",
+      "kind": "weak_entity",
+      "primary_keys": ["id"],
+      "attributes": ["CustomerId", "TripId", "Stars", "DateTime"]
+    },
+    {
+      "name": "trip",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["LicenseNumber", "State", "CustomerId"]
+    },
+    {
+      "name": "recalls",
+      "kind": "weak_entity",
+      "primary_keys": ["make", "model", "year"],
+      "attributes": ["RecallDescription", "Date"]
+    },
+    {
+      "name": "customer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["Name", "CreditCardNumber"]
+    },
+    {
+      "name": "driver",
+      "kind": "entity",
+      "primary_keys": ["LicenseNumber", "State"],
+      "attributes": ["Name", "Age", "VIN", "Ownership"]
+    },
+    {
+      "name": "car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["Make", "Model", "Year", "CurrentMilage"]
+    },
+    {
+      "name": "rental",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["LicenseNumber", "State", "Date", "Installments"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "rental",
+      "kind": "relationship",
+      "attributes": ["StartDate", "EndDate"],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "01"},
+        { "name": "rental", "cardinality": "01"},
+        { "name": "car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "own",
+      "kind": "relationship",
+      "attributes": ["StartingMilage"],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "01"},
+        { "name": "car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "on",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "recalls", "cardinality": "01"},
+        { "name": "car", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "trip",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "01"},
+        { "name": "customer", "cardinality": "01"},
+        { "name": "trip", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "writes",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "customer", "cardinality": "01"},
+        { "name": "review", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "no_name1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "trip", "cardinality": "01"},
+        { "name": "review", "cardinality": "1M"}
+      ]
+    }
+  ]
+}

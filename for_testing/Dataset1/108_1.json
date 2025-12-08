@@ -1,0 +1,86 @@
+{
+  "erd_id": "108_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Trip",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date-time", "number of stars", "pick-up location", "drop-off location", "cost of the trip"]
+    },
+    {
+      "name": "Recall info",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["Starting mileage"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Driver", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": ["Start date of rent contract", "End date of rent contract", "Date of monthly rent installment", "Monthly Rent Installment"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Driver", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Recall",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Recall info", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Involve",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Trip", "cardinality": "0M"},
+        {"name": "Driver", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "make",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Trip", "cardinality": "0M"},
+        {"name": "Customer", "cardinality": "11"}
+      ]
+    }
+  ]
+}

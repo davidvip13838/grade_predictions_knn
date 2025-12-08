@@ -1,0 +1,77 @@
+{
+    "erd_id": "112_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Video Game",
+            "kind": "entity",
+            "primary_keys": ["rank"],
+            "attributes": ["name", "year", "genre"]
+        },
+        {
+            "name": "Game Sale",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["sale"]
+        },
+        {
+            "name": "Region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "Developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        },
+        {
+            "name": "Platform",
+            "kind": "entity",
+            "primary_keys": ["platform_id"],
+            "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "published",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Developer", "cardinality": "01"},
+                {"name": "Video Game", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "sold in",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Video Game", "cardinality": "0M"},
+                {"name": "Region", "cardinality": "0M"},
+                {"name": "Game Sale", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "plays on",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Video Game", "cardinality": "01"},
+                {"name": "Platform", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "developed",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Developer", "cardinality": "01"},
+                {"name": "Platform", "cardinality": "01"}
+            ]
+        }
+    ]
+}

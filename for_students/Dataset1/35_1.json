@@ -1,0 +1,82 @@
+{
+  "erd_id": "35_1.png",
+  "comment": {
+    "flags": [
+      {"code":"FK_DRAWN","target_type":"entity","target_name":"Customer"},
+      {"code":"FK_DRAWN","target_type":"entity","target_name":"Recall"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit_card_number"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": ["recall_number"],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN_number"],
+      "attributes": ["make", "model", "year", "current_mileage"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "taxi trip",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Customer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": ["description", "date-time", "number_of_stars"],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "11"},
+        {"name": "Driver", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "rent_contract",
+      "kind": "relationship",
+      "attributes": ["start_date", "end_date", "monthly_payment_date", "monthly_payment_amount"],
+      "involved_entities": [
+        {"name": "Criver", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": ["start_mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Recall", "cardinality": "01"}
+      ]
+    }
+  ]
+}

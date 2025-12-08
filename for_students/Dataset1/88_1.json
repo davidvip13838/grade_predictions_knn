@@ -1,0 +1,124 @@
+{
+  "erd_id": "88_1.png",
+  "comment": {
+    "flags": [{"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"SUBER system"},
+    {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"Entity"},
+    {"code":"RELATIONSHIP_DANGLING","target_type":"relationship","target_name":"Contract"},
+    {"code":"RELATIONSHIP_DANGLING","target_type":"relationship","target_name":"Records"}
+      ]
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date-time", "number of stars"]
+    },
+    {
+      "name": "SUBER system",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": []
+    },
+    {
+      "name": "Entity",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": []
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Rent installments",
+      "kind": "relationship",
+      "attributes": ["Date", "Attribute"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "0M"},
+        {"name": "SUBER system", "cardinality": "01"}
+        ]
+    },
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"},
+        {"name": "SUBER system", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Contract",
+      "kind": "relationship",
+      "attributes": ["Start date", "End date"],
+      "involved_entities": [
+        {"name": "SUBER system", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Records",
+      "kind": "relationship",
+      "attributes": ["Start mileage"],
+      "involved_entities": [
+        {"name": "SUBER system", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Stores",
+      "kind": "relationship",
+      "attributes": ["Date", "Description"],
+      "involved_entities": [
+        {"name": "SUBER system", "cardinality": "01"},
+        {"name": "Entity", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Entity", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "SUBER system", "cardinality": "01"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Posts",
+      "kind": "identifying_relationship",
+      "attributes": ["Trip"],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "01"},
+        {"name": "Review", "cardinality": "0M"},
+        {"name": "Driver", "cardinality": "0M"},
+        {"name": "Car", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "erd_id": "73_1.png",
+  "comment": {
+    "flags": [
+      {"code": "RELATIONSHIP_DANGLING", "target_type": "relationship", "target_name": "recall"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_no", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["make", "model", "year", "mileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "cc_no"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "own",
+      "kind": "relationship",
+      "attributes": ["starting mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "1M"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "rent",
+      "kind": "relationship",
+      "attributes": ["start date", "end date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "1M"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": ["description", "date-time", "star_no"],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "1M"},
+        {"name": "Car", "cardinality": "11"},
+	{"name": "Driver", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "recall",
+      "kind": "relationship",
+      "attributes": ["description", "date"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "1M"}
+      ]
+    }
+  ]
+}

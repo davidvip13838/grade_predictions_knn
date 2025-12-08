@@ -1,0 +1,91 @@
+{
+  "erd_id": "72_2.png",
+  "comment": {
+    "flags": [
+        {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"developer"},
+        {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"platform"},
+        {"code":"WEAK_ENTITY_NO_IDENT_REL","target_type":"entity","target_name":"video_game"},
+        {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"region"},
+        {"code":"PK_NOT_DEFINED","target_type":"entity","target_name":"game_sales"}
+    ]
+  },
+  "entities": [
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["name", "headquarters", "id"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["platform_id", "platform_name", "introductory_price_us", "units_sold", "developer_id"]
+    },
+    {
+      "name": "video_game",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["rank", "name", "platform_id", "year", "genre", "publisher_id"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["id", "name", "population"]
+    },
+    {
+      "name": "game_sales",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["region_id", "game_rank", "sales"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "developed by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "UNC"},
+        {"name": "video_game", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "develop / developed by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "developer", "cardinality": "UNC"},
+        {"name": "platform", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "available",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "UNC"},
+        {"name": "video_game", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "sold in",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "UNC"},
+        {"name": "game_sales", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "exist in",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "game_sales", "cardinality": "1M"},
+        {"name": "region", "cardinality": "UNC"}
+      ]
+    }
+  ]
+}

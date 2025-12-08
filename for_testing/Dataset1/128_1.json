@@ -1,0 +1,84 @@
+{
+  "erd_id": "128_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity", 
+        "target_name": "Rental Contract"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["Customer ID"],
+      "attributes": ["Name", "Credit card number"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["Make", "Model", "Year", "Current mileage"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["License number", "state"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": ["Make-model-year"],
+      "attributes": ["Recall date", "Description"]
+    },
+    {
+      "name": "Rental Contract",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Payment date", "Monthly installment amount"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Review",
+      "kind": "relationship",
+      "attributes": ["Description", "Date-time", "Number of stars"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Customer", "cardinality": "01"},
+        {"name": "Driver", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["Starting mileage"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Driver", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Has Recall",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Recall", "cardinality": "0M"},
+        {"name": "Car", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": ["Starting date", "Ending date"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Rental Contract", "cardinality": "01"}
+      ]
+    }
+  ]
+}

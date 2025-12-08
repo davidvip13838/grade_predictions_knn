@@ -1,0 +1,78 @@
+{
+    "erd_id" : "77_1.png",
+    "entities" : [
+        {
+            "name" : "driver",
+            "kind" : "entity",
+            "primary_keys" : ["licenseNumber", "state"],
+            "attributes" : ["name", "age"]
+        },
+        {
+            "name" : "customer",
+            "kind" : "entity",
+            "primary_keys" : ["customerID"],
+            "attributes" : ["name", "credit_card_number"]
+        },
+        {
+            "name" : "car",
+            "kind" : "entity",
+            "primary_keys" : ["VIN"],
+            "attributes" : ["make", "model", "year", "mileage"]
+        },
+        {
+            "name" : "rentContract",
+            "kind" : "weak_entity",
+            "primary_keys" : [],
+            "attributes" : ["startDate", "endDate", "currentDate", "amountPaid"]
+        },
+        {
+            "name" : "recall",
+            "kind" : "weak_entity",
+            "primary_keys" : [],
+            "attributes" : ["date", "description"]
+        }
+    ],
+    "relationships" : [
+        {
+            "name" : "owns",
+            "kind" : "relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "driver", "cardinality" : "01"},
+                {"name" : "car", "cardinality" : "01"}
+            ]
+        },
+        {
+            "name" : "rents",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "driver", "cardinality" : "01"},
+                {"name" : "car", "cardinality" : "01"},
+                {"name" : "rentContract", "cardinality" : "01"}
+            ]
+        },
+        {
+            "name" : "reviews",
+            "kind" : "relationship",
+            "attributes" : ["description", "date-time", "numStars"],
+            "involved_entities" : [
+                {"name" : "driver", "cardinality" : "0M"},
+                {"name" : "customer", "cardinality" : "0M"},
+                {"name" : "car", "cardinality" : "0M"}
+            ]
+        },
+        {
+            "name" : "getsRecalled",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "car", "cardinality" : "0M"},
+                {"name" : "recall", "cardinality" : "0M"}
+            ]
+        }
+    ],
+    "comment" : {
+        "flags" : []
+    }
+}

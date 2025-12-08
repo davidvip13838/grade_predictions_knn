@@ -1,0 +1,72 @@
+{
+  "erd_id": "1_1.png",
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license_no", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["make", "model", "year", "mileage_current"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "cc_no"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "own",
+      "kind": "relationship",
+      "attributes": [
+        "starting mileage"
+      ],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "0M"},
+        {"name": "Car",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": ["stars_no", "description", "date"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "0M"},
+        {"name": "Car",  "cardinality": "11"},
+        {"name": "Customer",  "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "rent",
+      "kind": "relationship",
+      "attributes": ["start_date", "end_date"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "recall",
+      "kind": "relationship",
+      "attributes": ["description", "date"],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "0M"},
+        {"name": "Car",  "cardinality": "11"}
+      ]
+    }
+  ],
+  "comment": {
+    "flags": [
+      {
+        "code":"RELATIONSHIP_DANGLING",
+        "target_type":"relationship",
+        "target_name":"rent"
+      }
+    ]
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "erd_id": "104_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Drivers",
+      "kind": "entity",
+      "primary_keys": [
+        "License Number",
+        "State"
+      ],
+      "attributes": [
+        "Name",
+        "Age"
+      ]
+    },
+    {
+      "name": "Customers",
+      "kind": "entity",
+      "primary_keys": [
+        "Customer Id"
+      ],
+      "attributes": [
+        "Name",
+        "Credit Card Number"
+      ]
+    },
+    {
+      "name": "Company Cars",
+      "kind": "entity",
+      "primary_keys": [
+        "VIN Number"
+      ],
+      "attributes": [
+        "Make",
+        "Model",
+        "Year",
+        "Mileage"
+      ]
+    },
+    {
+      "name": "Owned Cars",
+      "kind": "weak_entity",
+      "primary_keys": [
+        "VIN Number"
+      ],
+      "attributes": [
+        "Make",
+        "Model",
+        "Year",
+        "Mileage"
+      ]
+    },
+    {
+      "name": "Recalls",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": [
+        "Date",
+        "Description"
+      ]
+    },
+    {
+      "name": "Reviews",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": [
+        "Description",
+        "Number of stars"
+      ]
+    },
+    {
+      "name": "Rent Installments",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": [
+        "Amount",
+        "Date"
+      ]
+    },
+    {
+      "name": "Trips",
+      "kind": "entity",
+      "primary_keys": [
+        "Trip ID"
+      ],
+      "attributes": [
+        "Date - Time"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": [
+        "Start date",
+        "End date"
+      ],
+      "involved_entities": [
+        {
+          "name": "Drivers",
+          "cardinality": "01"
+        },
+        {
+          "name": "Company Cars",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "identifying_relationship",
+      "attributes": [
+        "Starting Mileage"
+      ],
+      "involved_entities": [
+        {
+          "name": "Drivers",
+          "cardinality": "11"
+        },
+        {
+          "name": "Owned Cars",
+          "cardinality": "11"
+        }
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Company Cars",
+          "cardinality": "11"
+        },
+        {
+          "name": "Recalls",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Owned Cars",
+          "cardinality": "11"
+        },
+        {
+          "name": "Recalls",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Trips",
+          "cardinality": "01"
+        },
+        {
+          "name": "Reviews",
+          "cardinality": "01"
+        }
+      ]
+    },
+    {
+      "name": "Ride",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Drivers",
+          "cardinality": "11"
+        },
+        {
+          "name": "Customers",
+          "cardinality": "11"
+        },
+        {
+          "name": "Trips",
+          "cardinality": "1M"
+        }
+      ]
+    },
+    {
+      "name": "Pays",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Drivers",
+          "cardinality": "01"
+        },
+        {
+          "name": "Rent Installments",
+          "cardinality": "1M"
+        }
+      ]
+    },
+    {
+      "name": "For",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Company Cars",
+          "cardinality": "11"
+        },
+        {
+          "name": "Rent Installments",
+          "cardinality": "1M"
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customers",
+          "cardinality": "01"
+        },
+        {
+          "name": "Reviews",
+          "cardinality": "0M"
+        }
+      ]
+    }
+  ]
+}

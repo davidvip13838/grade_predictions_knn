@@ -1,0 +1,85 @@
+{
+    "erd_id": "84_1.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Driver",
+            "kind": "entity",
+            "primary_keys": ["License Number", "State"],
+            "attributes": ["Name", "Age"]
+        },
+        {
+            "name": "Ownership",
+            "kind": "weak_entity",
+            "primary_keys": ["Ownership_Id"],
+            "attributes": ["isOwner", "Starting Mileage", "Start Date", "End Date"]
+        },
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": ["Customer_Id"],
+            "attributes": ["Name", "Credit Card Number"]
+        },
+        {
+            "name": "Recall",
+            "kind": "entity",
+            "primary_keys": ["Recall_Id"],
+            "attributes": ["Date", "Description"]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": ["VIN"],
+            "attributes": ["Make", "Model", "Year", "Mileage"]
+        },
+        {
+            "name": "Payments",
+            "kind": "weak_entity",
+            "primary_keys": ["Payment_Id"],
+            "attributes": ["Amount", "Date"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Pays",
+            "kind": "identifying_relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Driver", "cardinality": "11"},
+                {"name": "Payments", "cardinality": "0M"},
+                {"name": "Car", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Drives",
+            "kind": "identifying_relationship",
+            "attributes": [""],
+            "involved_entities": [
+                {"name": "Driver", "cardinality": "11"},
+                {"name": "Ownership", "cardinality": "11"},
+                {"name": "Car", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Reviews Trip",
+            "kind": "relationship",
+            "attributes": ["Datetime", "Stars", "Description"],
+            "involved_entities": [
+                {"name": "Car", "cardinality": "UNC"},
+                {"name": "Customer", "cardinality": "UNC"},
+                {"name": "Driver", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "Recall",
+            "kind": "identifying_relationship",
+            "attributes": ["Model", "Make", "Year"],
+            "involved_entities": [
+                {"name": "Car", "cardinality": "11"},
+                {"name": "Recall", "cardinality": "11"}
+            ]
+        }
+    ]
+}

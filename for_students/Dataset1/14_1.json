@@ -1,0 +1,115 @@
+{
+  "erd_id": "14_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+        "name": "Car",
+        "kind": "entity",
+        "primary_keys": ["VIN Number", ""],
+        "attributes": ["Make", "Model", "Year", "Current Mileage"]
+    },
+    {
+        "name": "Renter",
+        "kind": "entity",
+        "primary_keys": ["License Number", "State"],
+        "attributes": ["Name", "Age"]
+    },
+    {
+        "name": "Monthly Rent",
+        "kind": "weak_entity",
+        "primary_keys": ["Payment Date"],
+        "attributes": ["Amount"]
+    },
+    {
+        "name": "Renter Review",
+        "kind": "weak_entity",
+        "primary_keys": ["Date-time"],
+        "attributes": ["Description", "Number of Stars"]
+    },
+    {
+        "name": "Owner",
+        "kind": "entity",
+        "primary_keys": ["License Number", "State"],
+        "attributes": ["Name", "Age"]
+    },
+    {
+        "name": "Recalls",
+        "kind": "weak_entity",
+        "primary_keys": ["Date"],
+        "attributes": ["Description"]
+    },
+    {
+        "name": "Customer",
+        "kind": "entity",
+        "primary_keys": ["Customer ID"],
+        "attributes": ["Name", "Credit Card"]
+    },
+    {
+        "name": "Owner Review",
+        "kind": "weak_entity",
+        "primary_keys": ["Date-time"],
+        "attributes": ["Description", "Number of Stars"]
+    }
+  ],
+  "relationships": [
+    {
+        "name": "Rents",
+        "kind": "relationship",
+        "attributes": ["Ending Date", "Starting Date"],
+        "involved_entities": [
+          {"name": "Car", "cardinality": "11"},
+          {"name": "Renter", "cardinality": "01"}
+        ]
+    },
+    {
+        "name": "Owns",
+        "kind": "relationship",
+        "attributes": ["Starting Mileage"],
+        "involved_entities": [
+          {"name": "Car", "cardinality": "11"},
+          {"name": "Owner", "cardinality": "01"}
+        ]
+    },
+    {
+        "name": "Pays",
+        "kind": "identifying_relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Renter", "cardinality": "11"},
+          {"name": "Monthly Rent", "cardinality": "0M"}
+        ]
+    },
+    {
+        "name": "Writes",
+        "kind": "identifying_relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Customer", "cardinality": "11"},
+          {"name": "Renter Review", "cardinality": "0M"},
+          {"name": "Owner Review", "cardinality": "0M"}
+        ]
+    },
+    {
+        "name": "Recalls",
+        "kind": "identifying_relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Recalls",  "cardinality": "0M"},
+          {"name": "Car",  "cardinality": "11"}
+        ]
+    },
+    {
+        "name": "Regarding",
+        "kind": "identifying_relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Renter Review", "cardinality": "0M"},
+          {"name": "Renter", "cardinality": "11"},
+          {"name": "Owner", "cardinality": "11"},
+          {"name": "Owner Review", "cardinality": "0M"}
+        ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "erd_id": "109_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "weak_entity",
+      "primary_keys": ["license", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "owned",
+      "kind": "weak_entity",
+      "primary_keys": ["vin number", "driver"],
+      "attributes": ["starting milage"]
+    },
+    {
+      "name": "rented",
+      "kind": "weak_entity",
+      "primary_keys": ["vin number", "driver"],
+      "attributes": [
+        "starting date",
+        "installment payment",
+        "end date",
+        "date of installment payment"
+      ]
+    },
+    {
+      "name": "car",
+      "kind": "entity",
+      "primary_keys": ["vin number"],
+      "attributes": ["make", "model", "year", "milage"]
+    },
+    {
+      "name": "recalled",
+      "kind": "weak_entity",
+      "primary_keys": ["year", "make", "model"],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "review",
+      "primary_keys": ["date time"],
+      "kind": "weak_entity",
+      "attributes": ["number of stars", "description"]
+    },
+    {
+      "name": "customer",
+      "primary_keys": ["customerid"],
+      "attributes": ["name", "credit card"],
+      "kind": "entity"
+    }
+  ],
+  "relationships": [
+    {
+      "name": "owns",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "01" },
+        { "name": "owned", "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "rents",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "01" },
+        { "name": "rented", "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "recalled",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "car", "cardinality": "0M" },
+        { "name": "recalled", "cardinality": "0M" }
+      ]
+    },
+    {
+      "name": "posts",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "review", "cardinality": "1M" },
+        { "name": "Customer", "cardinality": "01" }
+      ]
+    },
+    {
+      "name": "",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "owned", "cardinality": "11" },
+        { "name": "car", "cardinality": "01" }
+      ]
+    },
+    {
+      "name": "",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "car", "cardinality": "11" },
+        { "name": "rented", "cardinality": "11" }
+      ]
+    }
+  ]
+}

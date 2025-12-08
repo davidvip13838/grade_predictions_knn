@@ -1,0 +1,73 @@
+{
+    "erd_id": "96_1.png",
+    "entities": [
+      {
+        "name": "Customer",
+        "kind": "entity",
+        "primary_keys": ["customer_id"],
+        "attributes": ["name", "credit card number"]
+      },
+      {
+        "name": "Driver",
+        "kind": "entity",
+        "primary_keys": ["license number", "state"],
+        "attributes": ["name", "age"]
+      },
+      {
+        "name": "Car",
+        "kind": "entity",
+        "primary_keys": ["VIN number"],
+        "attributes": ["make", "model", "year", "current mileage"]
+      },
+      {
+        "name": "Recalled Cars",
+        "kind": "entity",
+        "primary_keys": ["make", "model", "year"],
+        "attributes": ["date", "description"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Review",
+        "kind": "relationship",
+        "attributes": ["number of stars", "description", "date-time"],
+        "involved_entities": [
+          {"name": "Customer", "cardinality": "11"},
+          {"name": "Driver", "cardinality": "11"},
+          {"name": "Car", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Own",
+        "kind": "relationship",
+        "attributes": ["starting mileage"],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "11"},
+          {"name": "Car", "cardinality": "01"}
+        ]
+      },
+      {
+        "name": "Rent",
+        "kind": "relationship",
+        "attributes": [
+          "start date of rent contract",
+          "end date of rent contract",
+          "current date",
+          "amount of the monthly rent installments made"
+        ],
+        "involved_entities": [
+          {"name": "Driver", "cardinality": "0M"},
+          {"name": "Car", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "Recall",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Car", "cardinality": "0M"},
+          {"name": "Recalled Cars", "cardinality": "11"}
+        ]
+      }
+    ]
+  }

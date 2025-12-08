@@ -1,0 +1,77 @@
+{
+    "erd_id": "2_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "video game",
+            "kind": "entity",
+            "primary_keys": ["rank"],
+            "attributes": ["name", "year", "genre"]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": ["plateform id"],
+            "attributes": ["platform name", "introductory price us", "units sold"]
+        },
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        }, 
+        {
+            "name": "game sales",
+            "kind": "weak_entity",
+            "primary_keys": [],
+            "attributes": ["sales"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "purchase",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "region", "cardinality": "1M"},
+                {"name": "video game", "cardinality": "1M"},
+                {"name": "game sales", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "developed by 2",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "video game", "cardinality": "0M"},
+                {"name": "developer", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "console",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "video game", "cardinality": "1M"},
+                {"name": "platform", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "developed by 1",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "platform", "cardinality": "0M"},
+                {"name": "developer", "cardinality": "11"}
+            ]
+        }
+    ]
+}

@@ -1,0 +1,160 @@
+{
+  "erd_id": "106_1.png",
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": [
+        "license_number",
+        "state"
+      ],
+      "attributes": [
+        "name",
+        "age"
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "entity",
+      "primary_keys": [
+        "date-time"
+      ],
+      "attributes": [
+        "description",
+        "number of stars"
+      ]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": [
+        "customer id"
+      ],
+      "attributes": [
+        "name",
+        "credit card number"
+      ]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": [
+        "VIN number"
+      ],
+      "attributes": [
+        "make",
+        "model",
+        "year",
+        "current mileage"
+      ]
+    },
+    {
+      "name": "Rental Payment",
+      "kind": "entity",
+      "primary_keys": [
+        "date"
+      ],
+      "attributes": [
+        "rental start date",
+        "rental end date",
+        "amount"
+      ]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": [
+        "make",
+        "model",
+        "year",
+        "date"
+      ],
+      "attributes": [
+        "description"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "has/goes to",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Customer",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "has/goes on",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Car",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Trip",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "has recall",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Recall",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Car",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "own",
+      "kind": "relationship",
+      "attributes": [
+        "starting mileage"
+      ],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Car",
+          "cardinality": "0M"
+        }
+      ]
+    },
+    {
+      "name": "rent",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {
+          "name": "Driver",
+          "cardinality": "2M"
+        },
+        {
+          "name": "Rental Payment",
+          "cardinality": "1M"
+        },
+        {
+          "name": "Car",
+          "cardinality": "0M"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+    "erd_id" : "85_1.png",
+    "entities" : [
+        {
+            "name" : "Customer",
+            "kind" : "entity",
+            "primary_keys" : ["customer id"],
+            "attributes" : ["name", "credit_card_number"]
+        },
+        {
+            "name" : "Review",
+            "kind" : "weak_entity",
+            "primary_keys" : ["date-time"],
+            "attributes" : ["description", "number of stars"]
+        },
+        {
+            "name" : "Driver",
+            "kind" : "weak_entity",
+            "primary_keys" : ["licence number", "state"],
+            "attributes" : ["name", "age"]
+        },
+        {
+            "name" : "Installment",
+            "kind" : "weak_entity",
+            "primary_keys" : ["VIN number"],
+            "attributes" : ["Date", "monthly rent installments made"]
+        },
+        {
+            "name" : "Owned Car",
+            "kind" : "entity",
+            "primary_keys" : ["VIN number"],
+            "attributes" : ["make", "model", "year", "current mileage", "starting mileage"]
+        },
+        {
+            "name" : "Rented Car",
+            "kind" : "entity",
+            "primary_keys" : ["VIN number"],
+            "attributes" : ["make", "model", "year", "start date", "end date"]
+        },
+        {
+            "name" : "Recall",
+            "kind" : "weak_entity",
+            "primary_keys" : ["make", "model", "year"],
+            "attributes" : ["date", "description"]
+        }
+    ],
+    "relationships" : [
+        {
+            "name" : "post",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "Customer", "cardinality" : "11"},
+                {"name" : "Review", "cardinality" : "0M"}
+            ]
+        },
+        {
+            "name" : "Buys",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "Driver", "cardinality" : "11"},
+                {"name" : "Owned Car", "cardinality" : "01"}
+            ]
+        },
+        {
+            "name" : "Rents",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "Driver", "cardinality" : "11"},
+                {"name" : "Rented Car", "cardinality" : "01"}
+            ]
+        },
+        {
+            "name" : "Has paid",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "Installment", "cardinality" : "11"},
+                {"name" : "Rented Car", "cardinality" : "11"}
+            ]
+        },
+        {
+            "name" : "no_name1",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "Owned Car", "cardinality" : "UNC"},
+                {"name" : "Recall", "cardinality" : "0M"}
+            ]
+        },
+        {
+            "name" : "no_name2",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "Rented Car", "cardinality" : "UNC"},
+                {"name" : "Recall", "cardinality" : "0M"}
+            ]
+        }
+    ],
+    "comment" : {
+        "flags" : [
+            {
+                "code" : "CARDINALITY_GLYPH_CONFLICT",
+                "target_type" : "relationship",
+                "target_name" : "no_name1"
+            },
+            {
+                "code" : "CARDINALITY_GLYPH_CONFLICT",
+                "target_type" : "relationship",
+                "target_name" : "no_name2"
+            }
+        ]
+    }
+}

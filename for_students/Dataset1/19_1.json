@@ -1,0 +1,71 @@
+{
+  "erd_id": "19_1.png",
+  "comment": {
+    "flags": [{"code":"CARDINALITY_GLYPH_CONFLICT","target_type":"identifying_relationship","target_name":"Problem"}]
+  },
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license no", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit_card_no"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN_no"],
+      "attributes": ["make", "model", "year", "current_mileage"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["make", "model", "year"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": ["start_date", "end_date", "date", "monthly installment amount"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "1M"},
+        {"name": "Car",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["starting_mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "1M"},
+        {"name": "Car",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Review",
+      "kind": "relationship",
+      "attributes": ["description", "date-time", "number_stars"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "1M"},
+        {"name": "Car",    "cardinality": "1M"},
+        {"name": "Customer",    "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Problem",
+      "kind": "identifying_relationship",
+      "attributes": ["date", "description"],
+      "involved_entities": [
+        {"name": "Recall", "cardinality": "UNC"},
+        {"name": "Car",    "cardinality": "UNC"}
+      ]
+    }
+  ]
+}

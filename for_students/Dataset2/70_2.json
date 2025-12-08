@@ -1,0 +1,66 @@
+{
+    "erd_id": "70_2.png",
+    "comment": {
+      "flags": [
+        {
+          "code": "WEAK_ENTITY_NO_IDENT_REL",
+          "target_type": "entity",
+          "target_name": "developer"
+        },
+        {
+          "code": "ATTRIBUTE_UNCONNECTED",
+          "target_type": "global",
+          "target_name": ""
+        }
+      ]
+    },
+    "entities": [
+      {
+        "name": "video game",
+        "kind": "entity",
+        "primary_keys": ["rank"],
+        "attributes": ["name", "year", "genre"]
+      },
+      {
+        "name": "platform",
+        "kind": "entity",
+        "primary_keys": ["platform id"],
+        "attributes": ["platform name", "introductory price (US)", "units sold"]
+      },
+      {
+        "name": "developer",
+        "kind": "weak_entity",
+        "primary_keys": ["id"],
+        "attributes": ["name", "headquarters"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Has",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "video game", "cardinality": "0M"},
+          {"name": "platform", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Sold By",
+        "kind": "relationship",
+        "attributes": ["sales"],
+        "involved_entities": [
+          {"name": "video game", "cardinality": "01"},
+          {"name": "developer", "cardinality": "0M"}
+        ]
+      },
+      {
+        "name": "Creates",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "developer", "cardinality": "11"},
+          {"name": "platform", "cardinality": "0M"}
+        ]
+      }
+    ]
+  }

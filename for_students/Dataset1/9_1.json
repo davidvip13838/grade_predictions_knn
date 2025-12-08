@@ -1,0 +1,94 @@
+{
+  "erd_id": "9_1.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "Recall"
+      },
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "Monthly Payment"
+      },
+      {
+        "code": "PK_NOT_DEFINED",
+        "target_type": "entity",
+        "target_name": "Monthly Payment"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "Monthly Payment",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "amount"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit card number"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "May Have",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Recall", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Rent Contract",
+      "kind": "relationship",
+      "attributes": ["Start Date", "End Date"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Monthly Payment", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["Starting Mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Review",
+      "kind": "relationship",
+      "attributes": ["num of stars", "date-time", "description"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Customer", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    }
+  ]
+}

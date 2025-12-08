@@ -1,0 +1,166 @@
+{
+	"erd_id": "102_1.png",
+	"comment": {
+		"flags": []
+	},
+	"entities": [
+		{
+			"name": "Driver",
+			"kind": "entity",
+			"primary_keys": [
+				"license number",
+				"state"
+			],
+			"attributes": [
+				"name",
+				"age"
+			]
+		},
+		{
+			"name": "Car",
+			"kind": "entity",
+			"primary_keys": [
+				"VIN number"
+			],
+			"attributes": [
+				"make",
+				"model",
+				"year",
+				"current mileage"
+			]
+		},
+		{
+			"name": "Customer",
+			"kind": "entity",
+			"primary_keys": [
+				"customer id"
+			],
+			"attributes": [
+				"name",
+				"credit card number"
+			]
+		},
+		{
+			"name": "Recall",
+			"kind": "weak_entity",
+			"primary_keys": [
+				"make-model-year"
+			],
+			"attributes": [
+				"date",
+				"description"
+			]
+		},
+		{
+			"name": "Rent",
+			"kind": "weak_entity",
+			"primary_keys": [
+				"date"
+			],
+			"attributes": [
+				"amount of monthly rent"
+			]
+		},
+		{
+			"name": "Review",
+			"kind": "weak_entity",
+			"primary_keys": [
+				"date-time"
+			],
+			"attributes": [
+				"description",
+				"number of stars"
+			]
+		}
+	],
+	"relationships": [
+		{
+			"name": "has",
+			"kind": "identifying_relationship",
+			"attributes": [],
+			"involved_entities": [
+				{
+					"name": "Car",
+					"cardinality": "11"
+				},
+				{
+					"name": "Recall",
+					"cardinality": "0M"
+				}
+			]
+		},
+		{
+			"name": "Own Car",
+			"kind": "relationship",
+			"attributes": [
+				"Starting mileage"
+			],
+			"involved_entities": [
+				{
+					"name": "Car",
+					"cardinality": "11"
+				},
+				{
+					"name": "Driver",
+					"cardinality": "11"
+				}
+			]
+		},
+		{
+			"name": "Rent car",
+			"kind": "identifying_relationship",
+			"attributes": [
+				"rent start date",
+				"rent end date"
+			],
+			"involved_entities": [
+				{
+					"name": "Car",
+					"cardinality": "01"
+				},
+				{
+					"name": "Driver",
+					"cardinality": "01"
+				},
+				{
+					"name": "Rent",
+					"cardinality": "01"
+				}
+			]
+		},
+		{
+			"name": "Trip",
+			"kind": "identifying_relationship",
+			"attributes": [],
+			"involved_entities": [
+				{
+					"name": "Car",
+					"cardinality": "01"
+				},
+				{
+					"name": "Driver",
+					"cardinality": "01"
+				},
+				{
+					"name": "Review",
+					"cardinality": "01"
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"kind": "relationship",
+			"attributes": [],
+			"involved_entities": [
+				{
+					"name": "Customer",
+					"cardinality": "11"
+				},
+				{
+					"name": "Review",
+					"cardinality": "01"
+				}
+			]
+		}
+	]
+}

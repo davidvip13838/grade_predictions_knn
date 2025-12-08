@@ -1,0 +1,129 @@
+{
+    "erd_id": "15_2.png",
+    "comment": {
+        "flags": [
+            {"code":"WEAK_ENTITY_NO_IDENT_REL","target_type":"entity","target_name":"games_sales"},
+            {"code":"CARDINALITY_GLYPH_CONFLICT","target_type":"relationship","target_name":"game_rank"}
+        ]
+    },
+    "entities": [
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": [
+                "id"
+            ],
+            "attributes": [
+                "name",
+                "headquarters"
+            ]
+        },
+        {
+            "name": "video_game",
+            "kind": "entity",
+            "primary_keys": [
+                "rank"
+            ],
+            "attributes": [
+                "name",
+                "year",
+                "genre"
+            ]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": [
+                "platform_id"
+            ],
+            "attributes": [
+                "platform_name",
+                "introductory_price_us",
+                "units_sold"
+            ]
+        },
+        {
+            "name": "region",
+            "kind": "entity",
+            "primary_keys": [
+                "id"
+            ],
+            "attributes": [
+                "name",
+                "population"
+            ]
+        },
+        {
+            "name": "games_sales",
+            "kind": "weak_entity",
+            "primary_keys":[],
+            "attributes":[]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "publisher_id",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "developer",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "video_game",
+                    "cardinality": "0M"
+                }
+            ]
+        },
+        {
+            "name": "developer_id",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities":[
+                {
+                    "name": "developer",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "platform",
+                    "cardinality": "0M" 
+                }
+            ]
+        },
+        {
+            "name": "platform_id",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {
+                    "name": "platform",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "video_game",
+                    "cardinality": "0M"
+                }
+            ]
+        },
+        {
+            "name": "game_rank",
+            "kind": "identifying_relationship",
+            "attributes":[],
+            "involved_entities":[
+                {
+                    "name": "video_game",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "region",
+                    "cardinality": "0M"
+                },
+                {
+                    "name": "games_sales",
+                    "cardinality": "UNC"
+                }
+            ]
+        }
+    ]
+}

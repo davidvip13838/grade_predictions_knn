@@ -1,0 +1,86 @@
+{
+    "erd_id": "37_2.png",
+    "comment": {
+      "flags": [
+        {
+          "code": "WEAK_ENTITY_NO_IDENT_REL",
+          "target_type": "entity",
+          "target_name": "Region"
+        },
+        {
+          "code": "WEAK_ENTITY_NO_IDENT_REL",
+          "target_type": "entity",
+          "target_name": "Platform"
+        },
+        {
+          "code": "FK_DRAWN",
+          "target_type": "entity",
+          "target_name": "Platform"
+        }
+      ]
+    },
+    "entities": [
+      {
+        "name": "Video Game",
+        "kind": "entity",
+        "primary_keys": ["rank"],
+        "attributes": ["name", "year", "genre"]
+      },
+      {
+        "name": "Region",
+        "kind": "weak_entity",
+        "primary_keys": ["region_id"],
+        "attributes": ["name", "population"]
+      },
+      {
+        "name": "Platform",
+        "kind": "weak_entity",
+        "primary_keys": ["platform_id"],
+        "attributes": ["name", "units sold", "developer id", "introductory price"]
+      },
+      {
+        "name": "Developer",
+        "kind": "entity",
+        "primary_keys": ["developer_id"],
+        "attributes": ["name", "headquarters"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "game sales",
+        "kind": "relationship",
+        "attributes": ["sales"],
+        "involved_entities": [
+          {"name": "Video Game", "cardinality": "11"},
+          {"name": "Region", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Publisher",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Video Game", "cardinality": "1M"},
+          {"name": "Developer", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Platform",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Video Game", "cardinality": "1M"},
+          {"name": "Platform", "cardinality": "11"}
+        ]
+      },
+      {
+        "name": "Manufacturer",
+        "kind": "relationship",
+        "attributes": [],
+        "involved_entities": [
+          {"name": "Developer", "cardinality": "11"},
+          {"name": "Platform", "cardinality": "11"}
+        ]
+      }
+    ]
+  }

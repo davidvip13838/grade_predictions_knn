@@ -1,0 +1,83 @@
+{
+  "erd_id": "115_2.png",
+  "entities": [
+    {
+      "name": "Headquarter",
+      "kind": "weak_entity",
+      "primary_keys": ["headquarter_place"],
+      "attributes": []
+    },
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["developer_id"],
+      "attributes": ["dev_name"]
+    },
+    {
+      "name": "Region",
+      "kind": "entity",
+      "primary_keys": ["region_id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "Video Games",
+      "kind": "entity",
+      "primary_keys": ["game_rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "Platform",
+      "kind": "entity",
+      "primary_keys": ["Platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Headquarter", "cardinality": "1M"},
+        {"name": "Developer", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Makes",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Developer", "cardinality": "11"},
+        {"name": "Platform", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Played On",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Platform", "cardinality": "11"},
+        {"name": "Video Games", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Publishes",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Developer", "cardinality": "11"},
+        {"name": "Video Games", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Has Sales",
+      "kind": "relationship",
+      "attributes": ["sales_real"],
+      "involved_entities": [
+        {"name": "Region", "cardinality": "1M"},
+        {"name": "Video Games", "cardinality": "1M"}
+      ]
+    }
+  ]
+}
+

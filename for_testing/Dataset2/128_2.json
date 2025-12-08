@@ -1,0 +1,70 @@
+{
+    "erd_id": "128_2.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Developer",
+            "kind": "entity",
+            "primary_keys": ["ID"],
+            "attributes": ["Name", "Headquarters"]
+        },
+        {
+            "name": "Platform",
+            "kind": "entity",
+            "primary_keys": ["Platform ID"],
+            "attributes": ["Platform name", "Introductory price US", "Units sold"]
+        },
+        {
+            "name": "Video game",
+            "kind": "entity",
+            "primary_keys": ["Rank"],
+            "attributes": ["Name", "Year", "Genre"]
+        },
+        {
+            "name": "Region",
+            "kind": "entity",
+            "primary_keys": ["ID"],
+            "attributes": ["Name", "Population"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Developed",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Developer", "cardinality": "11"},
+                {"name": "Platform", "cardinality": "0M"}
+            ]
+        },
+        {
+            "name": "Published",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Developer", "cardinality": "11"},
+                {"name": "Video game", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "Has",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Platform", "cardinality": "11"},
+                {"name": "Video game", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "Games sales",
+            "kind": "relationship",
+            "attributes": ["Sales"],
+            "involved_entities": [
+                {"name": "Video game", "cardinality": "0M"},
+                {"name": "Region", "cardinality": "1M"}
+            ]
+        }
+    ]
+}
