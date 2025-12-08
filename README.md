@@ -232,5 +232,5 @@ Each relationship contains:
 
 ## License
 
-This project is part of CS473 coursework.
+MIT
 
