@@ -1,4 +1,4 @@
-# ERD Grade Prediction - Project Stage 2
+# ERD Grade Prediction
 
 This project implements a machine learning approach to predict grades for Entity Relationship Diagrams (ERDs) using custom graph-text similarity and K-Nearest Neighbors (KNN) regression.
 
